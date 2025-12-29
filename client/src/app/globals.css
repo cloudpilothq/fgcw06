@@ -1,0 +1,38 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --fgc-green: #006837;
+  --fgc-white: #ffffff;
+  --fgc-gray-light: #f3f4f6; /* Neutral background for sections */
+  --fgc-text-dark: #1a1a1a;
+}
+
+@layer base {
+  h1, h2, h3 {
+    @apply font-serif text-slate-900; /* Serif for that academic Carlson look */
+  }
+  body {
+    @apply bg-white font-sans text-slate-800;
+  }
+}
+
+@layer components {
+  /* Solid, authoritative button style */
+  .btn-carlson {
+    @apply block w-full px-6 py-4 bg-[#006837] text-white font-bold 
+           uppercase tracking-widest text-sm transition-colors duration-300
+           hover:bg-green-900 active:bg-black shadow-md;
+  }
+
+  /* Academic Serif Style for Headings */
+  .font-serif {
+    font-family: 'Lora', Georgia, serif;
+  }
+  
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8;
+  }
+}

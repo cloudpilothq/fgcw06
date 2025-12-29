@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 58, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/HP/Desktop/fgwc06/client/src/proxy.ts"],"sourcesContent":["import NextAuth from 'next-auth';\r\nimport { authConfig } from './auth.config';\r\n \r\nexport default NextAuth(authConfig).auth;\r\n \r\nexport const config = {\r\n  // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher\r\n  matcher: ['/((?!api|_next/static|_next/image|.*\\\\.png$).*)'],\r\n};\r\n"],"names":[],"mappings":";;;;;;AAAA;;;;;;;;uCAGe,IAAA,gKAAQ,EAAC,YAAY,IAAI;AAEjC,MAAM,SAAS;IACpB,mFAAmF;IACnF,SAAS;QAAC;KAAkD;AAC9D"}}]
+}
