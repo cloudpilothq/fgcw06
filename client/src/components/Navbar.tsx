@@ -28,6 +28,7 @@ export default function Navbar() {
         
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-gray-700">
+          <Link href="/about" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">About</Link>
           <Link href="/network" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Network</Link>
           <Link href="/events" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Events</Link>
           <Link href="/volunteer" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Volunteer</Link>
@@ -55,6 +56,7 @@ export default function Navbar() {
 
           {/* Main Mobile Links */}
           <nav className="flex flex-col gap-4 text-base font-bold uppercase tracking-widest text-gray-800">
+            <Link href="/about" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">About</Link>
             <Link href="/network" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Network</Link>
             <Link href="/events" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Events</Link>
             <Link href="/volunteer" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Volunteer</Link>
