@@ -22,7 +22,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Links (footer__links) */}
-          <div className="hidden md:flex flex-col">
+          <div className="flex flex-col">
             <h2 className="sr-only">Footer menu</h2>
             <ul className="space-y-2 text-sm">
               <li><Link href="/location" className="hover:underline">Directions & Parking</Link></li>
@@ -41,7 +41,7 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Secondary Links (footer__links) */}
-          <div className="hidden md:flex flex-col">
+          <div className="flex flex-col">
             <ul className="space-y-2 text-sm">
               <li><Link href="/students" className="hover:underline">Current Members</Link></li>
               <li><Link href="/undergrad" className="hover:underline">Mentorship Program</Link></li>

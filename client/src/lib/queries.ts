@@ -1,9 +1,15 @@
 // lib/queries.ts
 
-export async function getWordPressData(query: string) {
+export async function getWordPressData(query: string, authToken?: string) {
+  const headers: any = { 'Content-Type': 'application/json' };
+  
+  if (authToken) {
+    headers['Authorization'] = `Bearer ${authToken}`;
+  }
+
   const res = await fetch(process.env.NEXT_PUBLIC_WORDPRESS_API_URL as string, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     body: JSON.stringify({ query }),
     next: { revalidate: 60 }
   });
@@ -144,4 +150,89 @@ export async function getMemberProfile(userId: string) {
     }
   `;
   return await getWordPressData(query);
+}
+
+export async function updateMemberProfile(userId: string, jobTitle: string, location: string, authToken: string) {
+  const mutation = `
+    mutation UpdateProfile {
+      updateUser(input: {
+        id: "${userId}",
+        description: "${jobTitle}",
+        clientMutationId: "fgcw06_update"
+      }) {
+        user {
+          id
+          name
+        }
+      }
+    }
+  `;
+  
+  return await getWordPressData(mutation, authToken); 
+}
+
+export async function loginUser(username: string, password: string) {
+  const mutation = `
+    mutation Login {
+      login(input: {
+        username: "${username}",
+        password: "${password}",
+        clientMutationId: "fgcw06_login"
+      }) {
+        authToken
+        user {
+          id
+          name
+          email
+        }
+      }
+    }
+  `;
+  return await getWordPressData(mutation);
+}
+
+export async function submitContactForm(name: string, email: string, subject: string, message: string) {
+  // IMPORTANT: Replace these IDs with your actual Gravity Forms Field IDs
+  const formId = 1; 
+  const mutation = `
+    mutation SubmitContactForm {
+      submitGfForm(input: {
+        id: ${formId}
+        fieldValues: [
+          { id: 1, value: "${name}" },
+          { id: 2, value: "${email}" },
+          { id: 3, value: "${subject}" },
+          { id: 4, value: "${message}" }
+        ]
+      }) {
+        confirmation {
+          message
+        }
+        errors {
+          message
+        }
+      }
+    }
+  `;
+  return await getWordPressData(mutation);
+}
+
+export async function registerUser(email: string, username: string, password: string) {
+  const mutation = `
+    mutation RegisterUser {
+      registerUser(input: {
+        username: "${username}",
+        email: "${email}",
+        password: "${password}",
+        clientMutationId: "fgcw06_register"
+      }) {
+        user {
+          id
+          name
+          email
+        }
+      }
+    }
+  `;
+  return await getWordPressData(mutation);
 }

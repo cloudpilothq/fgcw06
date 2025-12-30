@@ -3,16 +3,12 @@ import React from 'react';
 import Link from 'next/link';
 import { Mail, Lock, ShieldCheck } from 'lucide-react';
 import { useFormState } from 'react-dom';
-// import { registerUser } from '../../actions/register';
-import { RegisterState } from '../../lib/definitions';
-
-async function registerUser(prevState: RegisterState, formData: FormData): Promise<RegisterState> {
-  return { message: "Registration is disabled in this static version.", errors: {} };
-}
+import { register } from '@/actions/register';
+import { RegisterState } from '@/lib/definitions';
 
 export default function RegisterPage() {
   const initialState: RegisterState = { message: null, errors: {} };
-  const [state, dispatch] = useFormState(registerUser, initialState);
+  const [state, dispatch] = useFormState(register, initialState);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#f2faf6] via-white to-[#e8f5ee] flex items-center justify-center p-6">

@@ -1,8 +1,12 @@
 "use client";
 import React from 'react';
 import { Mail, Phone, MapPin, Send, MessageSquare, ShieldCheck } from 'lucide-react';
+import { useFormState } from 'react-dom';
+import { submitContact } from '@/actions/contact';
 
 export default function ContactPage() {
+  const [state, dispatch] = useFormState(submitContact, null);
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#f2faf6] via-white to-[#e8f5ee] pt-[5rem] pb-20 px-[25px]">
       <div className="max-w-6xl mx-auto">
@@ -74,48 +78,60 @@ export default function ContactPage() {
           {/* Right: Message Form (Glassmorphism) */}
           <div className="lg:col-span-8">
             <div className="bg-white/70 backdrop-blur-xl p-10 lg:p-14 rounded-[40px] border border-white shadow-[0_20px_60px_rgba(0,104,55,0.06)]">
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="group">
-                    <label className="block text-[0.8rem] text-gray-400 uppercase font-black tracking-widest mb-2 px-1">Your Name</label>
-                    <div className="bg-white/50 border border-gray-100 rounded-2xl p-4 transition-all focus-within:ring-4 focus-within:ring-green-50 focus-within:border-[#006837]/30">
-                      <input type="text" className="w-full bg-transparent text-gray-800 text-[1.4rem] outline-none" placeholder="Full Name" />
+              {state === 'success' ? (
+                 <div className="text-center py-20">
+                    <div className="w-20 h-20 bg-green-100 text-[#006837] rounded-full flex items-center justify-center mx-auto mb-6">
+                        <Send size={32} />
                     </div>
-                  </div>
-                  <div className="group">
-                    <label className="block text-[0.8rem] text-gray-400 uppercase font-black tracking-widest mb-2 px-1">Email Address</label>
-                    <div className="bg-white/50 border border-gray-100 rounded-2xl p-4 transition-all focus-within:ring-4 focus-within:ring-green-50 focus-within:border-[#006837]/30">
-                      <input type="email" className="w-full bg-transparent text-gray-800 text-[1.4rem] outline-none" placeholder="name@email.com" />
+                    <h3 className="text-2xl font-bold text-[#006837] mb-4">Message Sent!</h3>
+                    <p className="text-gray-600">Thank you for reaching out. We'll get back to you shortly.</p>
+                 </div>
+              ) : (
+                  <form action={dispatch} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="group">
+                        <label className="block text-[0.8rem] text-gray-400 uppercase font-black tracking-widest mb-2 px-1">Your Name</label>
+                        <div className="bg-white/50 border border-gray-100 rounded-2xl p-4 transition-all focus-within:ring-4 focus-within:ring-green-50 focus-within:border-[#006837]/30">
+                          <input name="name" type="text" className="w-full bg-transparent text-gray-800 text-[1.4rem] outline-none" placeholder="Full Name" required />
+                        </div>
+                      </div>
+                      <div className="group">
+                        <label className="block text-[0.8rem] text-gray-400 uppercase font-black tracking-widest mb-2 px-1">Email Address</label>
+                        <div className="bg-white/50 border border-gray-100 rounded-2xl p-4 transition-all focus-within:ring-4 focus-within:ring-green-50 focus-within:border-[#006837]/30">
+                          <input name="email" type="email" className="w-full bg-transparent text-gray-800 text-[1.4rem] outline-none" placeholder="name@email.com" required />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-
-                <div className="group">
-                  <label className="block text-[0.8rem] text-gray-400 uppercase font-black tracking-widest mb-2 px-1">Subject</label>
-                  <div className="bg-white/50 border border-gray-100 rounded-2xl p-4 transition-all focus-within:ring-4 focus-within:ring-green-50 focus-within:border-[#006837]/30">
-                    <select className="w-full bg-transparent text-gray-800 text-[1.4rem] outline-none appearance-none">
-                      <option>General Inquiry</option>
-                      <option>Reunion Planning</option>
-                      <option>Dues & Finance</option>
-                      <option>Investors Circle</option>
-                      <option>Technical Issue</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="group">
-                  <label className="block text-[0.8rem] text-gray-400 uppercase font-black tracking-widest mb-2 px-1">Your Message</label>
-                  <div className="bg-white/50 border border-gray-100 rounded-2xl p-4 transition-all focus-within:ring-4 focus-within:ring-green-50 focus-within:border-[#006837]/30">
-                    <textarea rows={5} className="w-full bg-transparent text-gray-800 text-[1.4rem] outline-none resize-none" placeholder="How can we help you today?" />
-                  </div>
-                </div>
-
-                <div className="pt-4">
-                  <button type="submit" className="w-full md:w-auto px-12 py-5 bg-[#006837] text-white rounded-2xl text-[1.3rem] font-bold uppercase tracking-[.2em] shadow-xl shadow-green-900/10 hover:bg-green-800 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3">
-                    Send Message <Send size={18} />
-                  </button>
-                </div>
-              </form>
+    
+                    <div className="group">
+                      <label className="block text-[0.8rem] text-gray-400 uppercase font-black tracking-widest mb-2 px-1">Subject</label>
+                      <div className="bg-white/50 border border-gray-100 rounded-2xl p-4 transition-all focus-within:ring-4 focus-within:ring-green-50 focus-within:border-[#006837]/30">
+                        <select name="subject" className="w-full bg-transparent text-gray-800 text-[1.4rem] outline-none appearance-none">
+                          <option>General Inquiry</option>
+                          <option>Reunion Planning</option>
+                          <option>Dues & Finance</option>
+                          <option>Investors Circle</option>
+                          <option>Technical Issue</option>
+                        </select>
+                      </div>
+                    </div>
+    
+                    <div className="group">
+                      <label className="block text-[0.8rem] text-gray-400 uppercase font-black tracking-widest mb-2 px-1">Your Message</label>
+                      <div className="bg-white/50 border border-gray-100 rounded-2xl p-4 transition-all focus-within:ring-4 focus-within:ring-green-50 focus-within:border-[#006837]/30">
+                        <textarea name="message" rows={5} className="w-full bg-transparent text-gray-800 text-[1.4rem] outline-none resize-none" placeholder="How can we help you today?" required />
+                      </div>
+                    </div>
+    
+                    {state && <p className="text-red-500 font-bold">{state}</p>}
+    
+                    <div className="pt-4">
+                      <button type="submit" className="w-full md:w-auto px-12 py-5 bg-[#006837] text-white rounded-2xl text-[1.3rem] font-bold uppercase tracking-[.2em] shadow-xl shadow-green-900/10 hover:bg-green-800 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3">
+                        Send Message <Send size={18} />
+                      </button>
+                    </div>
+                  </form>
+              )}
             </div>
           </div>
 

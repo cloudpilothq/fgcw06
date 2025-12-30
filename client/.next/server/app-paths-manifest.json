@@ -3,6 +3,7 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/admin/dashboard/page": "app/admin/dashboard/page.js",
   "/admin/events/page": "app/admin/events/page.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/business-directory/page": "app/business-directory/page.js",
   "/career/page": "app/career/page.js",
   "/contact/page": "app/contact/page.js",

@@ -3,11 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Mail, Lock } from 'lucide-react';
 import { useFormState } from 'react-dom';
-// import { authenticate } from '../../actions/authenticate';
-
-async function authenticate(prevState: string | undefined, formData: FormData): Promise<string | undefined> {
-  return "Login is disabled in this static version.";
-}
+import { authenticate } from '@/actions/authActions';
 
 export default function LoginPage() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
@@ -24,13 +20,13 @@ export default function LoginPage() {
         </div>
 
         <form action={dispatch} className="space-y-5">
-          {/* Email: Subtly sunken input field */}
+          {/* Email/Username: Subtly sunken input field */}
           <div className="group">
-            <label className="block text-[0.8rem] text-gray-400 uppercase font-black tracking-widest mb-2 px-1">Email</label>
+            <label className="block text-[0.8rem] text-gray-400 uppercase font-black tracking-widest mb-2 px-1">Username or Email</label>
             <div className="relative bg-white border border-gray-100 rounded-2xl p-4 transition-all focus-within:ring-4 focus-within:ring-green-50 focus-within:border-[#006837]/30 shadow-sm">
               <input 
-                name="email"
-                type="email" 
+                name="username"
+                type="text" 
                 className="w-full bg-transparent text-gray-800 text-[1.4rem] outline-none placeholder:text-gray-300" 
                 placeholder="name@fgcw06.com" 
               />

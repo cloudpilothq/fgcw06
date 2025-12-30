@@ -1,5 +1,66 @@
 {
-  "node": {},
+  "node": {
+    "60c0e8861cb1cd4790958878122479bcd3fec60edf": {
+      "workers": {
+        "app/contact/page": {
+          "moduleId": 47556,
+          "async": false,
+          "exportedName": "submitContact",
+          "filename": "client/src/actions/contact.ts"
+        }
+      },
+      "layer": {
+        "app/contact/page": "action-browser"
+      },
+      "filename": "client/src/actions/contact.ts",
+      "exportedName": "submitContact"
+    },
+    "606e9a3e2247b9340362f718f2606ae64e8e1e26aa": {
+      "workers": {
+        "app/login/page": {
+          "moduleId": 96890,
+          "async": false,
+          "exportedName": "authenticate",
+          "filename": "client/src/actions/authActions.ts"
+        }
+      },
+      "layer": {
+        "app/login/page": "action-browser"
+      },
+      "filename": "client/src/actions/authActions.ts",
+      "exportedName": "authenticate"
+    },
+    "60e803bd5437e49ead7234bcbc6cf48f120b845b95": {
+      "workers": {
+        "app/profile/page": {
+          "moduleId": 67681,
+          "async": false,
+          "exportedName": "updateProfile",
+          "filename": "client/src/actions/profile.ts"
+        }
+      },
+      "layer": {
+        "app/profile/page": "action-browser"
+      },
+      "filename": "client/src/actions/profile.ts",
+      "exportedName": "updateProfile"
+    },
+    "60e5dc6ad62362b6aab9f446176c7f4ac75540dc28": {
+      "workers": {
+        "app/register/page": {
+          "moduleId": 17150,
+          "async": false,
+          "exportedName": "register",
+          "filename": "client/src/actions/register.ts"
+        }
+      },
+      "layer": {
+        "app/register/page": "action-browser"
+      },
+      "filename": "client/src/actions/register.ts",
+      "exportedName": "register"
+    }
+  },
   "edge": {},
   "encryptionKey": "8s/TWzAKq2euBJv5RgwI8V0JR+2e4bpXf9IfFZxjGQs="
 }
