@@ -6,8 +6,17 @@ export default async function PrivacyPage() {
   let pageData = null;
 
   try {
-    const data = await getWordPressData(GET_LEGAL_PAGE.replace('$slug', '"privacy"'));
-    pageData = data?.page;
+    const query = `
+      query GetPrivacyPage {
+        pageBy(uri: "privacy") {
+          title
+          content
+          date
+        }
+      }
+    `;
+    const data = await getWordPressData(query);
+    pageData = data?.pageBy;
   } catch (error) {
     console.error('Error fetching privacy page:', error);
   }

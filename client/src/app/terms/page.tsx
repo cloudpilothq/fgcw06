@@ -6,8 +6,17 @@ export default async function TermsPage() {
   let pageData = null;
 
   try {
-    const data = await getWordPressData(GET_LEGAL_PAGE.replace('$slug', '"terms"'));
-    pageData = data?.page;
+    const query = `
+      query GetTermsPage {
+        pageBy(uri: "terms") {
+          title
+          content
+          date
+        }
+      }
+    `;
+    const data = await getWordPressData(query);
+    pageData = data?.pageBy;
   } catch (error) {
     console.error('Error fetching terms page:', error);
   }
