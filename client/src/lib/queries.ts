@@ -130,6 +130,13 @@ export async function getGalleryImages() {
   `;
   
   const data = await getWordPressData(query);
+  
+  // Return empty array if WordPress connection fails or no media items
+  if (!data || !data.mediaItems || !data.mediaItems.nodes) {
+    console.warn('No gallery images found or WordPress connection issue');
+    return [];
+  }
+  
   return data.mediaItems.nodes;
 }
 
