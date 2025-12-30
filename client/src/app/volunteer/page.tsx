@@ -23,7 +23,7 @@ export default function VolunteerPage() {
               FGCW 06 Alumni Service
             </span>
 
-            <h2 className="text-4xl font-serif italic font-bold leading-tight mb-4">
+            <h2 className="text-4xl font-serif italic font-bold leading-tight mb-4 text-white">
               Service in Unity
             </h2>
 
