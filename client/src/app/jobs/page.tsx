@@ -1,38 +1,19 @@
-"use client";
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Briefcase, Calendar, ExternalLink, Building2 } from 'lucide-react';
 import Link from 'next/link';
-// import { getJobs } from '@/actions/job';
+import { getWordPressData, GET_JOBS } from '@/lib/queries';
 
-interface Job {
-  id: string;
-  title: string;
-  company: string;
-  description: string;
-  link: string | null;
-  createdAt: Date;
-  postedBy: {
-    name: string;
-  };
-}
+export default async function JobsPage() {
+  let jobs: any[] = [];
 
-export default function JobsPage() {
-  const [jobs, setJobs] = useState<Job[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   const fetchJobs = async () => {
-  //     try {
-  //       const data = await getJobs();
-  //       setJobs(data);
-  //     } catch (err) {
-  //       console.error("Failed to fetch jobs");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchJobs();
-  // }, []);
+  try {
+    const data = await getWordPressData(GET_JOBS);
+    if (data?.jobs?.nodes) {
+      jobs = data.jobs.nodes;
+    }
+  } catch (e) {
+    console.error("WP Jobs Fetch Error:", e);
+  }
 
   return (
     <main className="bg-white min-h-screen">
@@ -51,9 +32,7 @@ export default function JobsPage() {
 
       {/* Jobs Listing */}
       <section className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        {loading ? (
-          <div className="text-center py-20 font-medium text-[#006837]">Loading opportunities...</div>
-        ) : jobs.length === 0 ? (
+        {jobs.length === 0 ? (
           <div className="text-center py-20">
             <Briefcase className="mx-auto text-gray-300 mb-4" size={64} />
             <p className="text-xl text-gray-500">No job postings yet. Check back soon!</p>
@@ -73,18 +52,18 @@ export default function JobsPage() {
                     <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                       <div className="flex items-center gap-2">
                         <Building2 size={16} />
-                        <span className="font-bold">{job.company}</span>
+                        <span className="font-bold">{job.jobDetails?.company || 'Confidential'}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Calendar size={16} />
-                        <span>Posted {new Date(job.createdAt).toLocaleDateString()}</span>
+                        <span>Posted {job.date ? new Date(job.date).toLocaleDateString() : 'Recently'}</span>
                       </div>
                     </div>
                   </div>
                   
-                  {job.link && (
+                  {job.jobDetails?.applicationLink && (
                     <a 
-                      href={job.link} 
+                      href={job.jobDetails.applicationLink} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-[#006837] text-white px-6 py-3 font-bold uppercase tracking-widest text-xs hover:bg-green-800 transition-colors"
@@ -96,12 +75,12 @@ export default function JobsPage() {
                 </div>
 
                 <p className="text-gray-600 leading-relaxed mb-4">
-                  {job.description}
+                  {job.jobDetails?.description}
                 </p>
 
                 <div className="pt-4 border-t border-gray-100">
                   <p className="text-xs text-gray-500">
-                    Posted by <span className="font-bold text-gray-700">{job.postedBy.name}</span>
+                    Posted on FGCW 06 Network
                   </p>
                 </div>
               </article>

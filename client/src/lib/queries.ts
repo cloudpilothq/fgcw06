@@ -1,12 +1,84 @@
 // lib/queries.ts
+
 export async function getWordPressData(query: string) {
   const res = await fetch(process.env.NEXT_PUBLIC_WORDPRESS_API_URL as string, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query }),
-    next: { revalidate: 60 } // Refresh data every 60 seconds
+    next: { revalidate: 60 }
   });
 
   const json = await res.json();
   return json.data;
 }
+
+export const GET_EVENTS = `
+  query GetEvents {
+    events {
+      nodes {
+        id
+        title
+        date
+        eventDetails {
+          location
+          description
+          image {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_ALUMNI = `
+  query GetAlumni {
+    alumni {
+      nodes {
+        id
+        title
+        alumniDetails {
+          house
+          profession
+          biography
+          image {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_JOBS = `
+  query GetJobs {
+    jobs {
+      nodes {
+        id
+        title
+        jobDetails {
+          company
+          description
+          applicationLink
+        }
+        date
+      }
+    }
+  }
+`;
+
+export const GET_BUSINESSES = `
+  query GetBusinesses {
+    businesses {
+      nodes {
+        id
+        title
+        businessDetails {
+          category
+          description
+          contactInfo
+        }
+      }
+    }
+  }
+`;

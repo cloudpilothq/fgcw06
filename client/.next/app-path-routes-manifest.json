@@ -9,6 +9,7 @@
   "/directory/[id]/page": "/directory/[id]",
   "/directory/page": "/directory",
   "/donate/page": "/donate",
+  "/events/page": "/events",
   "/forgot-password/page": "/forgot-password",
   "/gallery/[category]/page": "/gallery/[category]",
   "/gallery/page": "/gallery",

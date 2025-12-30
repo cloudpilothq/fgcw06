@@ -9,6 +9,7 @@
   "/directory/[id]/page": "app/directory/[id]/page.js",
   "/directory/page": "app/directory/page.js",
   "/donate/page": "app/donate/page.js",
+  "/events/page": "app/events/page.js",
   "/forgot-password/page": "app/forgot-password/page.js",
   "/gallery/[category]/page": "app/gallery/[category]/page.js",
   "/gallery/page": "app/gallery/page.js",

@@ -108,6 +108,12 @@
       "namedRegex": "^/donate(?:/)?$"
     },
     {
+      "page": "/events",
+      "regex": "^/events(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/events(?:/)?$"
+    },
+    {
       "page": "/forgot-password",
       "regex": "^/forgot\\-password(?:/)?$",
       "routeKeys": {},
