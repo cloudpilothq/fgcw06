@@ -23,95 +23,169 @@ export default function TermsPage() {
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="prose prose-lg lg:prose-xl max-w-none 
-                       prose-headings:font-serif prose-headings:text-gray-900 prose-headings:font-bold prose-headings:mb-6 prose-headings:mt-8
-                       prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-base lg:prose-p:text-lg
-                       prose-a:text-[#006837] prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
-                       prose-strong:text-gray-900 prose-strong:font-bold
-                       prose-ul:my-6 prose-ul:space-y-2 prose-li:text-gray-700
-                       prose-ol:my-6 prose-ol:space-y-2
-                       first:prose-p:text-xl first:prose-p:text-gray-600 first:prose-p:leading-relaxed">
-          
-          <p className="text-xl text-gray-600 leading-relaxed">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Introduction */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
+          <p className="text-xl text-gray-700 leading-relaxed">
             Welcome to the FGCW Class of 2006 Alumni Portal. By accessing and using this platform, you agree to be bound by these Terms and Conditions. Please read them carefully.
           </p>
+        </div>
 
-          <h2>Acceptance of Terms</h2>
-          <p>
+        {/* Acceptance of Terms */}
+        <div className="bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-sm border border-green-100 p-8 mb-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-4">
+            Acceptance of Terms
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
             By creating an account and using our services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions, as well as our Privacy Policy.
           </p>
+        </div>
 
-          <h2>Eligibility</h2>
-          <p>
+        {/* Eligibility */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-6 pb-4 border-b-2 border-[#006837]">
+            Eligibility
+          </h2>
+          <p className="text-gray-700 mb-6 leading-relaxed">
             This platform is exclusively for verified alumni of the Federal Government College Warri Class of 2006. You must:
           </p>
-          <ul>
-            <li>Be a graduate of FGCW Class of 2006</li>
-            <li>Provide accurate and truthful information during registration</li>
-            <li>Be at least 18 years of age</li>
-            <li>Maintain the confidentiality of your account credentials</li>
+          <ul className="space-y-3">
+            <li className="flex items-start">
+              <span className="inline-block w-2 h-2 bg-[#006837] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+              <span className="text-gray-700">Be a graduate of FGCW Class of 2006</span>
+            </li>
+            <li className="flex items-start">
+              <span className="inline-block w-2 h-2 bg-[#006837] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+              <span className="text-gray-700">Provide accurate and truthful information during registration</span>
+            </li>
+            <li className="flex items-start">
+              <span className="inline-block w-2 h-2 bg-[#006837] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+              <span className="text-gray-700">Be at least 18 years of age</span>
+            </li>
+            <li className="flex items-start">
+              <span className="inline-block w-2 h-2 bg-[#006837] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+              <span className="text-gray-700">Maintain the confidentiality of your account credentials</span>
+            </li>
           </ul>
+        </div>
 
-          <h2>User Accounts</h2>
-          <p>
-            When you create an account, you agree to:
+        {/* User Accounts */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-6 pb-4 border-b-2 border-[#006837]">
+            User Accounts
+          </h2>
+          <p className="text-gray-700 mb-6 leading-relaxed">When you create an account, you agree to:</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-gray-50 rounded-lg p-4">
+              <p className="text-gray-900 font-semibold">✓ Provide accurate information</p>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-4">
+              <p className="text-gray-900 font-semibold">✓ Update your account promptly</p>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-4">
+              <p className="text-gray-900 font-semibold">✓ Keep password secure</p>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-4">
+              <p className="text-gray-900 font-semibold">✓ Report unauthorized use</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Acceptable Use */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-6 pb-4 border-b-2 border-[#006837]">
+            Acceptable Use
+          </h2>
+          <p className="text-gray-700 mb-6 leading-relaxed">
+            You agree to use the platform only for lawful purposes. You agree <strong>NOT</strong> to:
           </p>
-          <ul>
-            <li>Provide accurate, current, and complete information</li>
-            <li>Maintain and promptly update your account information</li>
-            <li>Keep your password secure and confidential</li>
-            <li>Notify us immediately of any unauthorized use of your account</li>
-            <li>Accept responsibility for all activities under your account</li>
+          <ul className="space-y-3">
+            <li className="flex items-start">
+              <span className="text-red-500 mr-3 flex-shrink-0">✗</span>
+              <span className="text-gray-700">Violate applicable laws or regulations</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-red-500 mr-3 flex-shrink-0">✗</span>
+              <span className="text-gray-700">Impersonate another alumni member</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-red-500 mr-3 flex-shrink-0">✗</span>
+              <span className="text-gray-700">Restrict or inhibit anyone's use of the platform</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-red-500 mr-3 flex-shrink-0">✗</span>
+              <span className="text-gray-700">Use automated systems without permission</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-red-500 mr-3 flex-shrink-0">✗</span>
+              <span className="text-gray-700">Share confidential alumni information with non-members</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-red-500 mr-3 flex-shrink-0">✗</span>
+              <span className="text-gray-700">Post offensive or inappropriate content</span>
+            </li>
           </ul>
+        </div>
 
-          <h2>Acceptable Use</h2>
-          <p>
-            You agree to use the platform only for lawful purposes and in accordance with these Terms. You agree NOT to:
-          </p>
-          <ul>
-            <li>Use the platform in any way that violates applicable laws or regulations</li>
-            <li>Impersonate or attempt to impersonate another alumni member</li>
-            <li>Engage in any conduct that restricts or inhibits anyone's use of the platform</li>
-            <li>Use any automated system to access the platform without permission</li>
-            <li>Share confidential alumni information with non-members</li>
-            <li>Post offensive, defamatory, or inappropriate content</li>
-          </ul>
-
-          <h2>Intellectual Property</h2>
-          <p>
+        {/* Intellectual Property */}
+        <div className="bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-sm border border-green-100 p-8 mb-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-4">
+            Intellectual Property
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
             The platform and its original content, features, and functionality are owned by FGCW Class of 2006 Alumni Association and are protected by international copyright, trademark, and other intellectual property laws.
           </p>
+        </div>
 
-          <h2>User-Generated Content</h2>
-          <p>
+        {/* User-Generated Content */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-4">
+            User-Generated Content
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
             By posting content on the platform (including profile information, comments, and photos), you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, and display such content for the purpose of operating and promoting the alumni network.
           </p>
+        </div>
 
-          <h2>Termination</h2>
-          <p>
-            We reserve the right to terminate or suspend your account immediately, without prior notice or liability, for any reason, including but not limited to breach of these Terms.
-          </p>
+        {/* Important Sections Grid */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+            <h3 className="text-2xl font-serif font-bold text-gray-900 mb-3">Termination</h3>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              We reserve the right to terminate or suspend your account immediately, without prior notice, for any breach of these Terms.
+            </p>
+          </div>
+          
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+            <h3 className="text-2xl font-serif font-bold text-gray-900 mb-3">Limitation of Liability</h3>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              We shall not be liable for any indirect, incidental, or consequential damages resulting from your use of the platform.
+            </p>
+          </div>
+          
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+            <h3 className="text-2xl font-serif font-bold text-gray-900 mb-3">Changes to Terms</h3>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              We reserve the right to modify these Terms at any time. Continued use after modifications constitutes acceptance.
+            </p>
+          </div>
+          
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+            <h3 className="text-2xl font-serif font-bold text-gray-900 mb-3">Governing Law</h3>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              These Terms shall be governed by the laws of the Federal Republic of Nigeria.
+            </p>
+          </div>
+        </div>
 
-          <h2>Limitation of Liability</h2>
-          <p>
-            To the maximum extent permitted by law, FGCW Class of 2006 Alumni Association shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the platform.
-          </p>
-
-          <h2>Changes to Terms</h2>
-          <p>
-            We reserve the right to modify these Terms at any time. We will notify users of any material changes via email or through the platform. Your continued use of the platform after such modifications constitutes acceptance of the updated Terms.
-          </p>
-
-          <h2>Governing Law</h2>
-          <p>
-            These Terms shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria, without regard to its conflict of law provisions.
-          </p>
-
-          <h2>Contact Information</h2>
-          <p>
+        {/* Contact */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-4">
+            Contact Information
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
             If you have any questions about these Terms and Conditions, please contact us at{' '}
-            <Link href="/contact">our contact page</Link>.
+            <Link href="/contact" className="text-[#006837] font-semibold hover:underline">our contact page</Link>.
           </p>
         </div>
       </div>

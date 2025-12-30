@@ -23,86 +23,145 @@ export default function PrivacyPage() {
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="prose prose-lg lg:prose-xl max-w-none 
-                       prose-headings:font-serif prose-headings:text-gray-900 prose-headings:font-bold prose-headings:mb-6 prose-headings:mt-8
-                       prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-base lg:prose-p:text-lg
-                       prose-a:text-[#006837] prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
-                       prose-strong:text-gray-900 prose-strong:font-bold
-                       prose-ul:my-6 prose-ul:space-y-2 prose-li:text-gray-700
-                       prose-ol:my-6 prose-ol:space-y-2
-                       first:prose-p:text-xl first:prose-p:text-gray-600 first:prose-p:leading-relaxed">
-          
-          <p className="text-xl text-gray-600 leading-relaxed">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Introduction */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
+          <p className="text-xl text-gray-700 leading-relaxed">
             Welcome to the official FGCW Class of 2006 Alumni Portal ("the Set"). We are committed to protecting the privacy of our "Legends." This policy explains how we collect, use, and safeguard your information when you use our platform.
           </p>
+        </div>
 
-          <h2>Information We Collect</h2>
-          <p>
+        {/* Information We Collect */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-6 pb-4 border-b-2 border-[#006837]">
+            Information We Collect
+          </h2>
+          <p className="text-gray-700 mb-6 leading-relaxed">
             To provide a premium networking experience, we collect the following data:
           </p>
+          
+          <div className="space-y-6">
+            <div className="pl-6 border-l-4 border-green-200">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Identity Data</h3>
+              <p className="text-gray-700">Full name, House color (Red, Blue, Green, Yellow), and graduation details.</p>
+            </div>
+            
+            <div className="pl-6 border-l-4 border-green-200">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Contact Data</h3>
+              <p className="text-gray-700">Email address and phone number provided during registration.</p>
+            </div>
+            
+            <div className="pl-6 border-l-4 border-green-200">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Professional Data</h3>
+              <p className="text-gray-700">Job titles, company names, and LinkedIn profiles for the Network Directory.</p>
+            </div>
+            
+            <div className="pl-6 border-l-4 border-green-200">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Technical Data</h3>
+              <p className="text-gray-700">IP addresses and usage patterns collected via our Headless CMS architecture.</p>
+            </div>
+          </div>
+        </div>
 
-          <h3>Identity Data</h3>
-          <p>
-            Full name, House color (Red, Blue, Green, Yellow), and graduation details.
-          </p>
-
-          <h3>Contact Data</h3>
-          <p>
-            Email address and phone number provided during registration.
-          </p>
-
-          <h3>Professional Data</h3>
-          <p>
-            Job titles, company names, and LinkedIn profiles for the Network Directory.
-          </p>
-
-          <h3>Technical Data</h3>
-          <p>
-            IP addresses and usage patterns collected via our Headless CMS architecture.
-          </p>
-
-          <h2>How We Use Your Information</h2>
-          <p>
+        {/* How We Use Your Information */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-6 pb-4 border-b-2 border-[#006837]">
+            How We Use Your Information
+          </h2>
+          <p className="text-gray-700 mb-6 leading-relaxed">
             Your data is used solely for the progress of the Set:
           </p>
-          <ul>
-            <li><strong>Verification:</strong> To ensure only verified alumni gain access to the secure portal.</li>
-            <li><strong>Networking:</strong> To populate the Alumni Directory and facilitate professional connections.</li>
-            <li><strong>Volunteering:</strong> To coordinate committee assignments for the 20th Anniversary Reunion.</li>
-            <li><strong>Communications:</strong> To send official Set updates, dues reminders, and event invitations.</li>
+          <ul className="space-y-3">
+            <li className="flex items-start">
+              <span className="inline-block w-2 h-2 bg-[#006837] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+              <span className="text-gray-700"><strong className="text-gray-900">Verification:</strong> To ensure only verified alumni gain access to the secure portal.</span>
+            </li>
+            <li className="flex items-start">
+              <span className="inline-block w-2 h-2 bg-[#006837] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+              <span className="text-gray-700"><strong className="text-gray-900">Networking:</strong> To populate the Alumni Directory and facilitate professional connections.</span>
+            </li>
+            <li className="flex items-start">
+              <span className="inline-block w-2 h-2 bg-[#006837] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+              <span className="text-gray-700"><strong className="text-gray-900">Volunteering:</strong> To coordinate committee assignments for the 20th Anniversary Reunion.</span>
+            </li>
+            <li className="flex items-start">
+              <span className="inline-block w-2 h-2 bg-[#006837] rounded-full mt-2 mr-3 flex-shrink-0"></span>
+              <span className="text-gray-700"><strong className="text-gray-900">Communications:</strong> To send official Set updates, dues reminders, and event invitations.</span>
+            </li>
           </ul>
+        </div>
 
-          <h2>Data Security</h2>
-          <p>
+        {/* Data Security */}
+        <div className="bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-sm border border-green-100 p-8 mb-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-4">
+            Data Security
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
             We implement "High-Level" security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way.
           </p>
+        </div>
 
-          <h2>Your Rights</h2>
-          <p>
-            You have the right to:
-          </p>
-          <ul>
-            <li>Access your personal data</li>
-            <li>Correct inaccurate information</li>
-            <li>Request deletion of your data</li>
-            <li>Opt-out of marketing communications</li>
-          </ul>
+        {/* Your Rights */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-6 pb-4 border-b-2 border-[#006837]">
+            Your Rights
+          </h2>
+          <p className="text-gray-700 mb-6 leading-relaxed">You have the right to:</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-gray-50 rounded-lg p-4">
+              <p className="text-gray-900 font-semibold">✓ Access your personal data</p>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-4">
+              <p className="text-gray-900 font-semibold">✓ Correct inaccurate information</p>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-4">
+              <p className="text-gray-900 font-semibold">✓ Request deletion of your data</p>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-4">
+              <p className="text-gray-900 font-semibold">✓ Opt-out of marketing communications</p>
+            </div>
+          </div>
+        </div>
 
-          <h2>Third-Party Services</h2>
-          <p>
-            We use the following third-party services:
-          </p>
-          <ul>
-            <li><strong>WordPress:</strong> For content management</li>
-            <li><strong>Vercel:</strong> For hosting and deployment</li>
-            <li><strong>NextAuth.js:</strong> For secure authentication</li>
-          </ul>
+        {/* Third-Party Services */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-6 pb-4 border-b-2 border-[#006837]">
+            Third-Party Services
+          </h2>
+          <p className="text-gray-700 mb-6 leading-relaxed">We use the following third-party services:</p>
+          <div className="space-y-3">
+            <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+              <span className="text-2xl mr-3">🔧</span>
+              <div>
+                <p className="font-bold text-gray-900">WordPress</p>
+                <p className="text-sm text-gray-600">For content management</p>
+              </div>
+            </div>
+            <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+              <span className="text-2xl mr-3">☁️</span>
+              <div>
+                <p className="font-bold text-gray-900">Vercel</p>
+                <p className="text-sm text-gray-600">For hosting and deployment</p>
+              </div>
+            </div>
+            <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+              <span className="text-2xl mr-3">🔐</span>
+              <div>
+                <p className="font-bold text-gray-900">NextAuth.js</p>
+                <p className="text-sm text-gray-600">For secure authentication</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <h2>Contact Us</h2>
-          <p>
+        {/* Contact */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+          <h2 className="text-3xl font-serif font-bold text-gray-900 mb-4">
+            Contact Us
+          </h2>
+          <p className="text-gray-700 leading-relaxed">
             If you have any questions about this Privacy Policy, please contact us at{' '}
-            <Link href="/contact">our contact page</Link>.
+            <Link href="/contact" className="text-[#006837] font-semibold hover:underline">our contact page</Link>.
           </p>
         </div>
       </div>
