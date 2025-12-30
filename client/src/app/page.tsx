@@ -313,7 +313,7 @@ function AlumniEvents() {
               <div>
                 <Link 
                   href="/events" 
-                  className="inline-block bg-[#006837] text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-green-800 transition-colors shadow-sm"
+                  className="inline-block bg-[#006837] text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-green-800 transition-colors shadow-sm rounded-xl"
                 >
                   Read More
                 </Link>
