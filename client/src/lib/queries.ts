@@ -82,3 +82,22 @@ export const GET_BUSINESSES = `
     }
   }
 `;
+
+// lib/queries.ts
+export async function getGalleryImages() {
+  const query = `
+    query GetMedia {
+      mediaItems(first: 20, where: { mimeType: IMAGE }) {
+        nodes {
+          id
+          sourceUrl
+          altText
+          title
+        }
+      }
+    }
+  `;
+  
+  const data = await getWordPressData(query);
+  return data.mediaItems.nodes;
+}
