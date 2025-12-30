@@ -1,59 +1,99 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'next/navigation';
-import { Lock, ShieldCheck } from 'lucide-react';
+import { Eye, EyeOff, Lock, ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ResetPassword() {
   const params = useParams();
-  const token = params.token; // This captures the unique string from the URL
+  const token = params.token; 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#f0f9f4] via-white to-[#e6f4ed] flex items-center justify-center p-[25px]">
-      <div className="w-full max-w-md bg-white p-10 rounded-[32px] shadow-2xl shadow-green-900/5 border border-white">
+    <div className="min-h-screen bg-[#121212] flex items-center justify-center p-4 font-sans">
+      <div className="w-full max-w-5xl bg-[#1E1E1E] rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[600px] border border-gray-800">
         
-        <div className="text-center mb-10">
-          <div className="w-12 h-12 bg-[#006837] text-white flex items-center justify-center rounded-xl mx-auto mb-4">
-            <ShieldCheck size={24} />
-          </div>
-          <h1 className="text-gray-900 text-[2.2rem] font-bold tracking-tight">Set New Password</h1>
-          <p className="text-gray-500 text-[1.3rem] mt-2">
-            Secure your FGCW 06 account with a new credential.
-          </p>
+        {/* Left Side - Image/Branding */}
+        <div className="relative md:w-5/12 bg-gray-900 flex flex-col justify-between p-8 text-white min-h-[300px] md:min-h-full">
+            {/* Background Image Overlay */}
+            <div className="absolute inset-0 z-0">
+                <img src="/school-gate.jpg" alt="Background" className="w-full h-full object-cover opacity-40 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#006837]/30 to-black/80" />
+            </div>
+
+            {/* Top Bar */}
+            <div className="relative z-10 flex justify-between items-start">
+               <span className="text-xl font-bold font-serif tracking-wider">FGCW 06</span>
+               <Link href="/login" className="text-xs bg-white/10 hover:bg-white/20 backdrop-blur-md px-4 py-2 rounded-full transition-all flex items-center gap-2">
+                 <ArrowLeft size={12} /> Back to Login
+               </Link>
+            </div>
+
+            {/* Bottom Text */}
+            <div className="relative z-10 mt-auto">
+               <h2 className="text-3xl font-bold leading-tight mb-2 text-white">Secure Your<br/>Account</h2>
+               <p className="text-gray-300 text-sm mb-4">Create a strong password to protect your profile.</p>
+               <div className="flex gap-2 mt-4">
+                 <div className="h-1 w-8 bg-white rounded-full"></div>
+                 <div className="h-1 w-2 bg-white/30 rounded-full"></div>
+                 <div className="h-1 w-2 bg-white/30 rounded-full"></div>
+               </div>
+            </div>
         </div>
 
-        <form className="space-y-5">
-          {/* Hidden Token Field (Optional, for form submission) */}
-          <input type="hidden" name="token" value={token} />
+        {/* Right Side - Form */}
+        <div className="md:w-7/12 p-8 md:p-12 bg-[#1E1E1E] text-gray-200 flex flex-col justify-center">
+            
+            <div className="max-w-md mx-auto w-full">
+                <h1 className="text-3xl font-bold text-white mb-2">Set New Password</h1>
+                <p className="text-sm text-gray-400 mb-8">
+                   Please enter your new password below.
+                </p>
 
-          <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 focus-within:border-[#006837]/30 transition-all">
-            <label className="block text-[0.8rem] text-gray-400 uppercase font-bold mb-1">New Password</label>
-            <div className="flex items-center justify-between">
-              <input 
-                type="password"  
-                className="w-full bg-transparent text-gray-800 text-[1.4rem] outline-none" 
-                placeholder="••••••••" 
-              />
-              <Lock size={14} className="text-gray-400" />
+                <form className="space-y-6">
+                   <input type="hidden" name="token" value={token} />
+                    
+                    <div className="relative">
+                        <input 
+                            name="password" 
+                            type={showPassword ? "text" : "password"} 
+                            placeholder="New Password"
+                            className="w-full bg-[#2A2A2A] border border-gray-700 text-white text-sm rounded-lg focus:ring-2 focus:ring-[#006837] focus:border-transparent block p-4 outline-none transition-all placeholder-gray-500"
+                        />
+                         <button 
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                         >
+                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                         </button>
+                    </div>
+
+                    <div className="relative">
+                        <input 
+                            name="confirmPassword" 
+                            type={showConfirmPassword ? "text" : "password"} 
+                            placeholder="Confirm New Password"
+                            className="w-full bg-[#2A2A2A] border border-gray-700 text-white text-sm rounded-lg focus:ring-2 focus:ring-[#006837] focus:border-transparent block p-4 outline-none transition-all placeholder-gray-500"
+                        />
+                         <button 
+                            type="button"
+                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                         >
+                            {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                         </button>
+                    </div>
+
+                    <button type="submit" className="w-full text-white bg-[#006837] hover:bg-[#00522b] focus:ring-4 focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-4 text-center transition-all shadow-[0_4px_14px_0_rgba(0,104,55,0.39)] bg-gradient-to-r from-[#006837] to-[#004d29]">
+                        Update Password
+                    </button>
+                    
+                </form>
             </div>
-          </div>
-
-          <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 focus-within:border-[#006837]/30 transition-all">
-            <label className="block text-[0.8rem] text-gray-400 uppercase font-bold mb-1">Confirm Password</label>
-            <div className="flex items-center justify-between">
-              <input 
-                type="password"  
-                className="w-full bg-transparent text-gray-800 text-[1.4rem] outline-none" 
-                placeholder="••••••••" 
-              />
-              <Lock size={14} className="text-gray-400" />
-            </div>
-          </div>
-
-          <button className="w-full bg-[#006837] text-white py-4 rounded-xl text-[1.2rem] font-bold shadow-lg shadow-green-900/20 hover:bg-green-800 transition-all transform active:scale-[0.98]">
-            Update Password
-          </button>
-        </form>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }

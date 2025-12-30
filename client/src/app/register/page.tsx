@@ -33,7 +33,7 @@ export default function RegisterPage() {
 
             {/* Bottom Text */}
             <div className="relative z-10 mt-auto">
-               <h2 className="text-3xl font-bold leading-tight mb-2">Capturing Moments,<br/>Creating Memories</h2>
+               <h2 className="text-3xl font-bold leading-tight mb-2 text-white">Capturing Moments,<br/>Creating Memories</h2>
                <div className="flex gap-2 mt-4">
                  <div className="h-1 w-8 bg-white rounded-full"></div>
                  <div className="h-1 w-2 bg-white/30 rounded-full"></div>

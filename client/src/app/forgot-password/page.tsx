@@ -26,7 +26,7 @@ export default function ForgotPasswordPage() {
 
             {/* Bottom Text */}
             <div className="relative z-10 mt-auto">
-               <h2 className="text-3xl font-bold leading-tight mb-2">Account Recovery</h2>
+               <h2 className="text-3xl font-bold leading-tight mb-2 text-white">Account Recovery</h2>
                <p className="text-gray-300 text-sm mb-4">Don't worry, we'll help you get back into your account.</p>
                <div className="flex gap-2 mt-4">
                  <div className="h-1 w-8 bg-white rounded-full"></div>

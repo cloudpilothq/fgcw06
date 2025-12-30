@@ -33,7 +33,7 @@ export default function LoginPage() {
 
             {/* Bottom Text */}
             <div className="relative z-10 mt-auto">
-               <h2 className="text-3xl font-bold leading-tight mb-2">Welcome Back,<br/>Alumni</h2>
+               <h2 className="text-3xl font-bold leading-tight mb-2 text-white">Welcome Back,<br/>Alumni</h2>
                <p className="text-gray-300 text-sm mb-4">Reconnect with your community and discover new opportunities.</p>
                <div className="flex gap-2 mt-4">
                  <div className="h-1 w-8 bg-white rounded-full"></div>
