@@ -1,4 +1,4 @@
-:HL["/_next/static/chunks/929a775580bcd1c8.css","style"]
+:HL["/_next/static/chunks/9836e9e8eb9f3915.css","style"]
 :HL["/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/8c2eb9ceedecfc8e-s.p.21935807.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/events-reunion.jpg","image"]
@@ -6,4 +6,4 @@
 :HL["/career-dev.jpg","image"]
 :HL["/alumni-networking-group.jpg","image"]
 :HL["/alumni-donors.jpg","image"]
-0:{"buildId":"VDdEqMd7F23Ogj48_n9dz","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"s0OHhrbypODJaU-dZgl8N","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
