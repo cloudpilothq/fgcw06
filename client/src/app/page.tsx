@@ -122,6 +122,7 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <WelcomeMessage />
       <NetworkingSection />
       <InvestorSection />
 
@@ -130,6 +131,50 @@ export default async function HomePage() {
       {/* <YouTubeSection /> */}
       <GallerySection />
     </main>
+  );
+}
+
+function WelcomeMessage() {
+  return (
+    <section className="bg-gray-100 py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="grid md:grid-cols-2 gap-0">
+            {/* President's Photo */}
+            <div className="relative h-96 md:h-auto">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 z-10" />
+              <img 
+                src="/president-photo.jpg" 
+                alt="President - Mr. Faisal Saddiq" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Welcome Message Content */}
+            <div className="p-8 md:p-12 flex flex-col justify-center">
+              <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
+                Welcome Message
+              </h2>
+              <p className="text-sm text-gray-600 mb-6 italic">
+                From the President – <span className="font-semibold">Mr. Faisal Saddiq</span>
+              </p>
+
+              <div className="space-y-4 text-gray-700 leading-relaxed">
+                <p>
+                  The FEDERAL GOVERNMENT COLLEGE WARRI CLASS OF 2000 (EMPIRE) ASSOCIATION incorporated in 2023, and fondly known as "Empire," represents a unique and vibrant group of individuals united by shared experiences and lasting memories. As one of the most dynamic sets in the school's history, Empire embodies the values of unity, diversity, and excellence instilled during their formative years at FGC Warri.
+                </p>
+                <p>
+                  Since graduating in 2000, the Empire alumni have maintained strong bonds through active engagement and collaboration. The group is committed to fostering a supportive community where members can connect, grow, and contribute to the collective good.
+                </p>
+                <p>
+                  Driven by the principles of inclusion and mutual respect, Empire has initiated various projects, including supporting their alma mater and giving back to society through charitable initiatives. Together, they remain a testament to the enduring legacy of FGC Warri as a hub for national unity and leadership development.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
