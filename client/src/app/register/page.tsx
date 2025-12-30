@@ -1,8 +1,9 @@
+"use client";
 import { register } from '@/actions/register';
 import { RegisterState } from '@/lib/definitions';
 import Link from 'next/link';
 import { useFormState } from 'react-dom';
-import { ArrowLeft, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 
 export default function RegisterPage() {
