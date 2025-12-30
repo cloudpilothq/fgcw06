@@ -1,74 +1,7 @@
-import { getWordPressData, GET_LEGAL_PAGE } from '@/lib/queries';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
-export default async function PrivacyPage() {
-  let pageData = null;
-  let debugInfo = '';
-
-  try {
-    // Try method 1: Query by slug name
-    let query = `
-      query GetPrivacyPage {
-        pages(where: {name: "privacy"}) {
-          nodes {
-            title
-            content
-            date
-            slug
-          }
-        }
-      }
-    `;
-    let data = await getWordPressData(query);
-    pageData = data?.pages?.nodes?.[0];
-    
-    // If not found, try method 2: Query by URI
-    if (!pageData) {
-      query = `
-        query GetPrivacyPageByUri {
-          pageBy(uri: "/privacy") {
-            title
-            content
-            date
-            slug
-          }
-        }
-      `;
-      data = await getWordPressData(query);
-      pageData = data?.pageBy;
-    }
-    
-    // If still not found, try method 3: Get all pages and filter
-    if (!pageData) {
-      query = `
-        query GetAllPages {
-          pages(first: 100) {
-            nodes {
-              title
-              content
-              date
-              slug
-            }
-          }
-        }
-      `;
-      data = await getWordPressData(query);
-      const allPages = data?.pages?.nodes || [];
-      pageData = allPages.find((page: any) => 
-        page.slug === 'privacy' || 
-        page.slug === 'privacy-policy' ||
-        page.title?.toLowerCase().includes('privacy')
-      );
-      
-      debugInfo = `Found ${allPages.length} pages. Slugs: ${allPages.map((p: any) => p.slug).join(', ')}`;
-    }
-    
-  } catch (error) {
-    console.error('Error fetching privacy page:', error);
-    debugInfo = `Error: ${error}`;
-  }
-
+export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -81,49 +14,97 @@ export default async function PrivacyPage() {
             <ArrowLeft size={16} /> Back to Home
           </Link>
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-white">
-            {pageData?.title || 'Privacy Policy'}
+            Privacy Policy
           </h1>
-          {pageData?.date && (
-            <p className="text-green-100 mt-4">
-              Last updated: {new Date(pageData.date).toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
-            </p>
-          )}
+          <p className="text-green-100 mt-4">
+            Last updated: December 30, 2025
+          </p>
         </div>
       </div>
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {pageData?.content ? (
-          <div 
-            className="prose prose-lg lg:prose-xl max-w-none 
+        <div className="prose prose-lg lg:prose-xl max-w-none 
                        prose-headings:font-serif prose-headings:text-gray-900 prose-headings:font-bold prose-headings:mb-6 prose-headings:mt-8
                        prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-base lg:prose-p:text-lg
                        prose-a:text-[#006837] prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
                        prose-strong:text-gray-900 prose-strong:font-bold
                        prose-ul:my-6 prose-ul:space-y-2 prose-li:text-gray-700
                        prose-ol:my-6 prose-ol:space-y-2
-                       first:prose-p:text-xl first:prose-p:text-gray-600 first:prose-p:leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: pageData.content }}
-          />
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-gray-600 text-lg mb-4">
-              Privacy policy content is not available at the moment.
-            </p>
-            <p className="text-sm text-gray-500 mb-4">
-              Please ensure the privacy page is published in WordPress.
-            </p>
-            {debugInfo && (
-              <div className="mt-6 p-4 bg-gray-100 rounded-lg text-left max-w-2xl mx-auto">
-                <p className="text-xs font-mono text-gray-700">{debugInfo}</p>
-              </div>
-            )}
-          </div>
-        )}
+                       first:prose-p:text-xl first:prose-p:text-gray-600 first:prose-p:leading-relaxed">
+          
+          <p className="text-xl text-gray-600 leading-relaxed">
+            Welcome to the official FGCW Class of 2006 Alumni Portal ("the Set"). We are committed to protecting the privacy of our "Legends." This policy explains how we collect, use, and safeguard your information when you use our platform.
+          </p>
+
+          <h2>Information We Collect</h2>
+          <p>
+            To provide a premium networking experience, we collect the following data:
+          </p>
+
+          <h3>Identity Data</h3>
+          <p>
+            Full name, House color (Red, Blue, Green, Yellow), and graduation details.
+          </p>
+
+          <h3>Contact Data</h3>
+          <p>
+            Email address and phone number provided during registration.
+          </p>
+
+          <h3>Professional Data</h3>
+          <p>
+            Job titles, company names, and LinkedIn profiles for the Network Directory.
+          </p>
+
+          <h3>Technical Data</h3>
+          <p>
+            IP addresses and usage patterns collected via our Headless CMS architecture.
+          </p>
+
+          <h2>How We Use Your Information</h2>
+          <p>
+            Your data is used solely for the progress of the Set:
+          </p>
+          <ul>
+            <li><strong>Verification:</strong> To ensure only verified alumni gain access to the secure portal.</li>
+            <li><strong>Networking:</strong> To populate the Alumni Directory and facilitate professional connections.</li>
+            <li><strong>Volunteering:</strong> To coordinate committee assignments for the 20th Anniversary Reunion.</li>
+            <li><strong>Communications:</strong> To send official Set updates, dues reminders, and event invitations.</li>
+          </ul>
+
+          <h2>Data Security</h2>
+          <p>
+            We implement "High-Level" security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way.
+          </p>
+
+          <h2>Your Rights</h2>
+          <p>
+            You have the right to:
+          </p>
+          <ul>
+            <li>Access your personal data</li>
+            <li>Correct inaccurate information</li>
+            <li>Request deletion of your data</li>
+            <li>Opt-out of marketing communications</li>
+          </ul>
+
+          <h2>Third-Party Services</h2>
+          <p>
+            We use the following third-party services:
+          </p>
+          <ul>
+            <li><strong>WordPress:</strong> For content management</li>
+            <li><strong>Vercel:</strong> For hosting and deployment</li>
+            <li><strong>NextAuth.js:</strong> For secure authentication</li>
+          </ul>
+
+          <h2>Contact Us</h2>
+          <p>
+            If you have any questions about this Privacy Policy, please contact us at{' '}
+            <Link href="/contact">our contact page</Link>.
+          </p>
+        </div>
       </div>
 
       {/* Footer CTA */}
