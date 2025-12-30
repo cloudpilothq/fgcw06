@@ -236,3 +236,13 @@ export async function registerUser(email: string, username: string, password: st
   `;
   return await getWordPressData(mutation);
 }
+
+export const GET_LEGAL_PAGE = `
+  query GetLegalPage($slug: ID!) {
+    page(id: $slug, idType: URI) {
+      title
+      content
+      date
+    }
+  }
+`;
