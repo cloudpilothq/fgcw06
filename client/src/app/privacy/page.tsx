@@ -4,23 +4,69 @@ import Link from 'next/link';
 
 export default async function PrivacyPage() {
   let pageData = null;
+  let debugInfo = '';
 
   try {
-    const query = `
+    // Try method 1: Query by slug name
+    let query = `
       query GetPrivacyPage {
         pages(where: {name: "privacy"}) {
           nodes {
             title
             content
             date
+            slug
           }
         }
       }
     `;
-    const data = await getWordPressData(query);
+    let data = await getWordPressData(query);
     pageData = data?.pages?.nodes?.[0];
+    
+    // If not found, try method 2: Query by URI
+    if (!pageData) {
+      query = `
+        query GetPrivacyPageByUri {
+          pageBy(uri: "/privacy") {
+            title
+            content
+            date
+            slug
+          }
+        }
+      `;
+      data = await getWordPressData(query);
+      pageData = data?.pageBy;
+    }
+    
+    // If still not found, try method 3: Get all pages and filter
+    if (!pageData) {
+      query = `
+        query GetAllPages {
+          pages(first: 100) {
+            nodes {
+              title
+              content
+              date
+              slug
+            }
+          }
+        }
+      `;
+      data = await getWordPressData(query);
+      const allPages = data?.pages?.nodes || [];
+      pageData = allPages.find((page: any) => 
+        page.slug === 'privacy' || 
+        page.slug === 'privacy-policy' ||
+        page.title?.toLowerCase().includes('privacy')
+      );
+      
+      debugInfo = `Found ${allPages.length} pages. Slugs: ${allPages.map((p: any) => p.slug).join(', ')}`;
+    }
+    
   } catch (error) {
     console.error('Error fetching privacy page:', error);
+    debugInfo = `Error: ${error}`;
   }
 
   return (
@@ -61,9 +107,14 @@ export default async function PrivacyPage() {
             <p className="text-gray-600 text-lg mb-4">
               Privacy policy content is not available at the moment.
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 mb-4">
               Please ensure the privacy page is published in WordPress.
             </p>
+            {debugInfo && (
+              <div className="mt-6 p-4 bg-gray-100 rounded-lg text-left max-w-2xl mx-auto">
+                <p className="text-xs font-mono text-gray-700">{debugInfo}</p>
+              </div>
+            )}
           </div>
         )}
       </div>
