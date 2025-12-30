@@ -41,6 +41,7 @@ export async function register(prevState: RegisterState, formData: FormData) {
 
   } catch (error) {
     console.error("Registration Error:", error);
-    return { message: 'Database Error: Failed to Register.' };
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    return { message: `Registration Error: ${errorMessage}` };
   }
 }
