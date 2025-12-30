@@ -17,6 +17,7 @@
   "/jobs/post/page": "/jobs/post",
   "/login/page": "/login",
   "/network/page": "/network",
+  "/news/page": "/news",
   "/page": "/",
   "/profile/edit/page": "/profile/edit",
   "/profile/page": "/profile",

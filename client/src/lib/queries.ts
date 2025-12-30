@@ -83,6 +83,31 @@ export const GET_BUSINESSES = `
   }
 `;
 
+export const GET_POSTS = `
+  query GetPosts {
+    posts {
+      nodes {
+        id
+        title
+        excerpt
+        date
+        slug
+        author {
+          node {
+            name
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+`;
+
+
 // lib/queries.ts
 export async function getGalleryImages() {
   const query = `
@@ -100,4 +125,23 @@ export async function getGalleryImages() {
   
   const data = await getWordPressData(query);
   return data.mediaItems.nodes;
+}
+
+// Example: Fetching Profile Data for your Executive Dashboard
+export async function getMemberProfile(userId: string) {
+  const query = `
+    query GetMember {
+      user(id: "${userId}", idType: DATABASE_ID) {
+        name
+        description
+        # Custom fields created in Ultimate Member
+        extraFields {
+          houseColor
+          jobTitle
+          location
+        }
+      }
+    }
+  `;
+  return await getWordPressData(query);
 }

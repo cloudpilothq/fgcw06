@@ -17,6 +17,7 @@
   "/jobs/post/page": "app/jobs/post/page.js",
   "/login/page": "app/login/page.js",
   "/network/page": "app/network/page.js",
+  "/news/page": "app/news/page.js",
   "/page": "app/page.js",
   "/profile/edit/page": "app/profile/edit/page.js",
   "/profile/page": "app/profile/page.js",
