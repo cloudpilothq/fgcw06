@@ -1,13 +1,13 @@
-
-# Keep environment variables out of version control
-node_modules
+# Next.js build output
 .next/
-dist/
+out/
+
+# Dependencies
+node_modules/
+
+# Environment variables (Crucial for your WordPress URL)
 .env
-.env.*
-.prisma/
-coverage/
+.env.local
+
+# Cache
 .turbo/
-.cache/
-*.log
-generated/prisma
