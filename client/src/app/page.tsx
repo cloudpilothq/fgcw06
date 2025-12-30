@@ -42,7 +42,7 @@ export default async function HomePage() {
               {title}
             </h1>
             <p className="text-xl mb-8 font-light italic">{description}</p>
-            <Link href="/register" className="btn-carlson">Join Our Network</Link>
+            <Link href="/register" className="inline-flex items-center justify-center px-8 py-3 bg-[#006837] text-white font-bold uppercase tracking-widest text-sm hover:bg-green-800 transition-all shadow-lg shadow-green-900/10 rounded-xl">Join Our Network</Link>
           </div>
           
           {/* Quick Common Searches Card */}
