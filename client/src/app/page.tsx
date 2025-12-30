@@ -3,7 +3,9 @@ import { ExternalLink } from 'lucide-react';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
 import GallerySection from '@/components/GallerySection';
-import YouTubeSection from '@/components/YouTubeSection';
+// import YouTubeSection from '@/components/YouTubeSection';
+// ...
+// <YouTubeSection />
 import { MapPin, Monitor } from 'lucide-react';
 import { getWordPressData } from "@/lib/queries";
 
@@ -127,7 +129,7 @@ export default async function HomePage() {
 
       <ImpactSection />
       <AlumniEvents />
-      <YouTubeSection />
+      {/* <YouTubeSection /> */}
       <GallerySection />
     </main>
   );
