@@ -1,3 +1,2 @@
-[00:00:02.053] Server  LOG     ✓ Ready in 1347ms
-[00:00:05.373] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:37.498] Browser ERROR   ReactDOM.useFormState has been renamed to React.useActionState. Please update %s to use React.useActionState. LoginPage
+[00:00:02.559] Server  LOG     ✓ Ready in 1840ms
+[00:00:15.908] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
