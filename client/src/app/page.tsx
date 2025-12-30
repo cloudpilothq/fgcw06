@@ -76,7 +76,7 @@ export default async function HomePage() {
               Explore upcoming events designed for Alumni to grow their network, develop their business knowledge, 
               reconnect with former classmates, and celebrate their FGCW pride.
             </p>
-            <Link href="/events" className="btn-carlson text-center">
+            <Link href="/events" className="inline-flex items-center justify-center px-8 py-3 bg-[#006837] text-white font-bold uppercase tracking-widest text-sm hover:bg-green-800 transition-all shadow-lg shadow-green-900/10 rounded-xl">
               Find Events
             </Link>
           </div>
@@ -95,7 +95,7 @@ export default async function HomePage() {
               The FGCW 06 Network is made up of alumni across Nigeria and worldwide. Forge new 
               connections among our community of influential business leaders and professionals.
             </p>
-            <Link href="/directory" className="btn-carlson text-center">
+            <Link href="/directory" className="inline-flex items-center justify-center px-8 py-3 bg-[#006837] text-white font-bold uppercase tracking-widest text-sm hover:bg-green-800 transition-all shadow-lg shadow-green-900/10 rounded-xl">
               Find Your Network
             </Link>
           </div>
@@ -114,7 +114,7 @@ export default async function HomePage() {
               Access career resources, professional development opportunities, request transcripts, or 
               get in touch with us for mentorship within the Class of 2006.
             </p>
-            <Link href="/career" className="btn-carlson text-center">
+            <Link href="/career" className="inline-flex items-center justify-center px-8 py-3 bg-[#006837] text-white font-bold uppercase tracking-widest text-sm hover:bg-green-800 transition-all shadow-lg shadow-green-900/10 rounded-xl">
               Discover More
             </Link>
           </div>
