@@ -1,12 +1,33 @@
-"use client";
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { ArrowRight } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import GallerySection from '@/components/GallerySection';
+import YouTubeSection from '@/components/YouTubeSection';
 import { MapPin, Monitor } from 'lucide-react';
+import { getWordPressData } from "@/lib/queries";
 
-export default function HomePage() {
+export default async function HomePage() {
+  let title = "A Thriving Global Alumni Network";
+  let description = "Pro Unitate";
+
+  try {
+    const data = await getWordPressData(`
+      query NewQuery {
+        generalSettings {
+          title
+          description
+        }
+      }
+    `);
+    if (data?.generalSettings) {
+      if (data.generalSettings.title) title = data.generalSettings.title;
+      if (data.generalSettings.description) description = data.generalSettings.description;
+    }
+  } catch (e) {
+    console.error("WP Fetch Error:", e);
+  }
+
   return (
     <main>
       {/* Hero Section */}
@@ -18,9 +39,9 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 relative z-20 w-full grid md:grid-cols-2">
           <div className="text-white">
             <h1 className="text-5xl font-serif font-bold mb-4 leading-tight text-white">
-              A Thriving Global <br /> Alumni Network
+              {title}
             </h1>
-            <p className="text-xl mb-8 font-light italic">Pro Unitate</p>
+            <p className="text-xl mb-8 font-light italic">{description}</p>
             <Link href="/register" className="btn-carlson">Join Our Network</Link>
           </div>
           
@@ -106,6 +127,7 @@ export default function HomePage() {
 
       <ImpactSection />
       <AlumniEvents />
+      <YouTubeSection />
       <GallerySection />
     </main>
   );
@@ -234,45 +256,6 @@ function ImpactSection() {
             </span>
             <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
           </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function YouTubeSection() {
-  const [videos, setVideos] = useState<any[]>([]);
-
-  useEffect(() => {
-    const fetchVideos = async () => {
-      try {
-        // Your frontend calls your backend, NOT the Google API directly
-        // const res = await axios.get('http://localhost:5000/api/media/youtube');
-        // setVideos(res.data);
-      } catch (err) {
-        console.error("Could not load YouTube feed");
-      }
-    };
-    fetchVideos();
-  }, []);
-
-  return (
-    <section className="py-12 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-serif font-bold text-gray-900 mb-8">Latest Videos</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {videos.length > 0 ? (
-            videos.map((video: any, idx: number) => (
-              <div key={idx} className="aspect-video bg-gray-100 rounded-lg">
-                {/* Placeholder for video content */}
-                <div className="flex items-center justify-center h-full text-gray-400">
-                  Video {idx + 1}
-                </div>
-              </div>
-            ))
-          ) : (
-             <p className="text-gray-500">Loading videos...</p>
-          )}
         </div>
       </div>
     </section>
