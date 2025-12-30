@@ -8,15 +8,17 @@ export default async function TermsPage() {
   try {
     const query = `
       query GetTermsPage {
-        pageBy(uri: "terms") {
-          title
-          content
-          date
+        pages(where: {name: "terms"}) {
+          nodes {
+            title
+            content
+            date
+          }
         }
       }
     `;
     const data = await getWordPressData(query);
-    pageData = data?.pageBy;
+    pageData = data?.pages?.nodes?.[0];
   } catch (error) {
     console.error('Error fetching terms page:', error);
   }

@@ -8,15 +8,17 @@ export default async function PrivacyPage() {
   try {
     const query = `
       query GetPrivacyPage {
-        pageBy(uri: "privacy") {
-          title
-          content
-          date
+        pages(where: {name: "privacy"}) {
+          nodes {
+            title
+            content
+            date
+          }
         }
       }
     `;
     const data = await getWordPressData(query);
-    pageData = data?.pageBy;
+    pageData = data?.pages?.nodes?.[0];
   } catch (error) {
     console.error('Error fetching privacy page:', error);
   }
