@@ -23,7 +23,7 @@ export default async function TermsPage() {
           >
             <ArrowLeft size={16} /> Back to Home
           </Link>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white">
             {pageData?.title || 'Terms & Conditions'}
           </h1>
           {pageData?.date && (
