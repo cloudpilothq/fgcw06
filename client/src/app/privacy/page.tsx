@@ -99,7 +99,14 @@ export default async function PrivacyPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {pageData?.content ? (
           <div 
-            className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-[#006837] prose-a:no-underline hover:prose-a:underline"
+            className="prose prose-lg lg:prose-xl max-w-none 
+                       prose-headings:font-serif prose-headings:text-gray-900 prose-headings:font-bold prose-headings:mb-6 prose-headings:mt-8
+                       prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-base lg:prose-p:text-lg
+                       prose-a:text-[#006837] prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
+                       prose-strong:text-gray-900 prose-strong:font-bold
+                       prose-ul:my-6 prose-ul:space-y-2 prose-li:text-gray-700
+                       prose-ol:my-6 prose-ol:space-y-2
+                       first:prose-p:text-xl first:prose-p:text-gray-600 first:prose-p:leading-relaxed"
             dangerouslySetInnerHTML={{ __html: pageData.content }}
           />
         ) : (
