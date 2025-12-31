@@ -4,9 +4,11 @@ import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   let post: any = null;
+  let errorMessage = '';
 
   try {
-    const query = `
+    // Try method 1: Query by slug
+    let query = `
       query GetPostBySlug {
         postBy(slug: "${params.slug}") {
           id
@@ -33,18 +35,99 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         }
       }
     `;
-    const data = await getWordPressData(query);
+    let data = await getWordPressData(query);
     post = data?.postBy;
+
+    // If not found, try method 2: Query by URI
+    if (!post) {
+      query = `
+        query GetPostByUri {
+          postBy(uri: "${params.slug}") {
+            id
+            title
+            content
+            date
+            excerpt
+            author {
+              node {
+                name
+              }
+            }
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+              }
+            }
+            categories {
+              nodes {
+                name
+              }
+            }
+          }
+        }
+      `;
+      data = await getWordPressData(query);
+      post = data?.postBy;
+    }
+
+    // If still not found, try method 3: Get all posts and filter
+    if (!post) {
+      query = `
+        query GetAllPosts {
+          posts(first: 100) {
+            nodes {
+              id
+              title
+              content
+              date
+              excerpt
+              slug
+              author {
+                node {
+                  name
+                }
+              }
+              featuredImage {
+                node {
+                  sourceUrl
+                  altText
+                }
+              }
+              categories {
+                nodes {
+                  name
+                }
+              }
+            }
+          }
+        }
+      `;
+      data = await getWordPressData(query);
+      const allPosts = data?.posts?.nodes || [];
+      post = allPosts.find((p: any) => p.slug === params.slug);
+      
+      if (!post && allPosts.length > 0) {
+        errorMessage = `Available slugs: ${allPosts.map((p: any) => p.slug).join(', ')}`;
+      }
+    }
   } catch (error) {
     console.error('Error fetching blog post:', error);
+    errorMessage = `Error: ${error}`;
   }
 
   if (!post) {
     return (
       <main className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+        <div className="text-center max-w-2xl mx-auto p-8">
           <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">Post Not Found</h1>
-          <p className="text-gray-600 mb-8">The blog post you're looking for doesn't exist.</p>
+          <p className="text-gray-600 mb-4">The blog post you're looking for doesn't exist.</p>
+          <p className="text-sm text-gray-500 mb-8">Slug: {params.slug}</p>
+          {errorMessage && (
+            <div className="bg-gray-100 p-4 rounded-lg mb-8 text-left">
+              <p className="text-xs font-mono text-gray-700">{errorMessage}</p>
+            </div>
+          )}
           <Link 
             href="/news"
             className="inline-flex items-center gap-2 text-[#006837] font-semibold hover:underline"
