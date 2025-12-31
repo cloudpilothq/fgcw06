@@ -50,6 +50,11 @@ export default function ExcosPage() {
       position: "Public Relations Officer 2",
       photo: "/excos/pro2.jpg",
       email: "pro2@fgcw06.org",
+      house: "Independent House (Pendo)",
+      facebook: "#",
+      twitter: "#",
+      instagram: "#",
+      whatsapp: "#",
       linkedin: "#"
     },
     {
