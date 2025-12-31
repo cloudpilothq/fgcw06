@@ -1,146 +1,67 @@
-import { getWordPressData, GET_BLOG_POSTS } from '@/lib/queries';
 import Link from 'next/link';
-import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
+import { ArrowLeft, Calendar, User } from 'lucide-react';
 
-// Enable dynamic rendering for this page
+// Enable dynamic rendering
 export const dynamic = 'force-dynamic';
 
-// Generate static params for all blog posts
-export async function generateStaticParams() {
+async function getPost(slug: string) {
   try {
-    const data = await getWordPressData(GET_BLOG_POSTS);
-    const posts = data?.posts?.nodes || [];
+    // Use WordPress REST API instead of GraphQL
+    const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL?.replace('/graphql', '') || '';
+    const restUrl = `${wpUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`;
     
-    return posts.map((post: any) => ({
+    const res = await fetch(restUrl, { 
+      next: { revalidate: 60 },
+      cache: 'no-store' 
+    });
+    
+    if (!res.ok) {
+      console.error('REST API error:', res.status);
+      return null;
+    }
+    
+    const posts = await res.json();
+    
+    if (!posts || posts.length === 0) {
+      console.error('No post found for slug:', slug);
+      return null;
+    }
+    
+    const post = posts[0];
+    
+    // Transform REST API response to match our expected format
+    return {
+      id: post.id,
+      title: post.title?.rendered || '',
+      content: post.content?.rendered || '',
+      excerpt: post.excerpt?.rendered || '',
+      date: post.date,
       slug: post.slug,
-    }));
+      author: {
+        node: {
+          name: post._embedded?.author?.[0]?.name || 'Unknown'
+        }
+      },
+      featuredImage: post._embedded?.['wp:featuredmedia']?.[0] ? {
+        node: {
+          sourceUrl: post._embedded['wp:featuredmedia'][0].source_url,
+          altText: post._embedded['wp:featuredmedia'][0].alt_text || ''
+        }
+      } : null,
+      categories: {
+        nodes: post._embedded?.['wp:term']?.[0]?.map((cat: any) => ({
+          name: cat.name
+        })) || []
+      }
+    };
   } catch (error) {
-    console.error('Error generating static params:', error);
-    return [];
+    console.error('Error fetching post:', error);
+    return null;
   }
 }
 
-
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  let post: any = null;
-  let errorMessage = '';
-
-  try {
-    // Try method 1: Query by slug
-    let query = `
-      query GetPostBySlug {
-        postBy(slug: "${params.slug}") {
-          id
-          title
-          content
-          date
-          excerpt
-          author {
-            node {
-              name
-            }
-          }
-          featuredImage {
-            node {
-              sourceUrl
-              altText
-            }
-          }
-          categories {
-            nodes {
-              name
-            }
-          }
-        }
-      }
-    `;
-    let data = await getWordPressData(query);
-    post = data?.postBy;
-
-    // If not found, try method 2: Query by URI
-    if (!post) {
-      query = `
-        query GetPostByUri {
-          postBy(uri: "${params.slug}") {
-            id
-            title
-            content
-            date
-            excerpt
-            author {
-              node {
-                name
-              }
-            }
-            featuredImage {
-              node {
-                sourceUrl
-                altText
-              }
-            }
-            categories {
-              nodes {
-                name
-              }
-            }
-          }
-        }
-      `;
-      data = await getWordPressData(query);
-      post = data?.postBy;
-    }
-
-    // If still not found, try method 3: Get all posts and filter
-    if (!post) {
-      query = `
-        query GetAllPosts {
-          posts(first: 100) {
-            nodes {
-              id
-              title
-              content
-              date
-              excerpt
-              slug
-              author {
-                node {
-                  name
-                }
-              }
-              featuredImage {
-                node {
-                  sourceUrl
-                  altText
-                }
-              }
-              categories {
-                nodes {
-                  name
-                }
-              }
-            }
-          }
-        }
-      `;
-      data = await getWordPressData(query);
-      const allPosts = data?.posts?.nodes || [];
-      console.log('All posts found:', allPosts.length);
-      console.log('Looking for slug:', params.slug);
-      console.log('Available slugs:', allPosts.map((p: any) => p.slug));
-      
-      post = allPosts.find((p: any) => p.slug === params.slug);
-      console.log('Post found:', post ? 'YES' : 'NO');
-      
-      if (!post && allPosts.length > 0) {
-        errorMessage = `Available slugs: ${allPosts.map((p: any) => p.slug).join(', ')}`;
-      }
-    }
-    
-    console.log('Final post object:', post ? 'EXISTS' : 'NULL');
-  } catch (error) {
-    console.error('Error fetching blog post:', error);
-    errorMessage = `Error: ${error}`;
-  }
+  const post = await getPost(params.slug);
 
   if (!post) {
     return (
@@ -149,11 +70,6 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">Post Not Found</h1>
           <p className="text-gray-600 mb-4">The blog post you're looking for doesn't exist.</p>
           <p className="text-sm text-gray-500 mb-8">Slug: {params.slug}</p>
-          {errorMessage && (
-            <div className="bg-gray-100 p-4 rounded-lg mb-8 text-left">
-              <p className="text-xs font-mono text-gray-700">{errorMessage}</p>
-            </div>
-          )}
           <Link 
             href="/news"
             className="inline-flex items-center gap-2 text-[#006837] font-semibold hover:underline"
