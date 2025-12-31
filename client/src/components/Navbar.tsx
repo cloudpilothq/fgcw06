@@ -31,6 +31,7 @@ export default function Navbar() {
         <nav className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-gray-700">
           <Link href="/network" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Network</Link>
           <Link href="/events" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Events</Link>
+          <Link href="/news" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">News</Link>
           <Link href="/volunteer" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Volunteer</Link>
           <Link href="/career" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Career</Link>
         </nav>
@@ -59,6 +60,7 @@ export default function Navbar() {
           <nav className="flex flex-col gap-4 text-base font-bold uppercase tracking-widest text-gray-800">
             <Link href="/network" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Network</Link>
             <Link href="/events" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Events</Link>
+            <Link href="/news" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">News</Link>
             <Link href="/volunteer" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Volunteer</Link>
             <Link href="/career" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Career</Link>
           </nav>
