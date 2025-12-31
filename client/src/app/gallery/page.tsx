@@ -1,86 +1,157 @@
-import React from 'react';
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
-import { Image as ImageIcon } from 'lucide-react';
-import { getGalleryImages } from '@/lib/queries';
+import { ArrowLeft, X } from 'lucide-react';
 
-const categories = [
-  { name: 'All', slug: 'all' },
-  { name: 'Reunions', slug: 'reunions' },
-  { name: 'Throwback', slug: 'throwback' },
-  { name: 'Projects', slug: 'projects' },
-];
+// Define gallery categories and their photos
+const galleryData = {
+  'All Photos': [
+    // Events
+    { src: '/gallery/events/reunion-2024.jpg', alt: 'Alumni Reunion 2024', category: 'Events' },
+    { src: '/gallery/events/annual-dinner.jpg', alt: 'Annual Dinner', category: 'Events' },
+    
+    // School Memories
+    { src: '/gallery/school-memories/old-campus.jpg', alt: 'FGC Warri Campus', category: 'School Memories' },
+    { src: '/gallery/school-memories/graduation-2006.jpg', alt: 'Graduation Day 2006', category: 'School Memories' },
+    
+    // Achievements
+    { src: '/gallery/achievements/award-ceremony.jpg', alt: 'Award Ceremony', category: 'Achievements' },
+    
+    // Community Service
+    { src: '/gallery/community/charity-event.jpg', alt: 'Charity Event', category: 'Community Service' },
+    
+    // Social Gatherings
+    { src: '/gallery/social/meetup.jpg', alt: 'Alumni Meetup', category: 'Social Gatherings' },
+  ],
+  'Events': [],
+  'School Memories': [],
+  'Achievements': [],
+  'Community Service': [],
+  'Social Gatherings': [],
+};
 
-export default async function GalleryPage() {
-  let galleryItems: any[] = [];
-  
-  try {
-    galleryItems = await getGalleryImages();
-  } catch (e) {
-    console.error("WP Gallery Fetch Error:", e);
+// Populate category-specific arrays
+galleryData['All Photos'].forEach(photo => {
+  if (galleryData[photo.category as keyof typeof galleryData]) {
+    (galleryData[photo.category as keyof typeof galleryData] as typeof photo[]).push(photo);
   }
+});
+
+export default function GalleryPage() {
+  const [activeCategory, setActiveCategory] = useState('All Photos');
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+
+  const categories = Object.keys(galleryData);
+  const currentPhotos = galleryData[activeCategory as keyof typeof galleryData];
 
   return (
-    <main className="min-h-screen bg-white pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full mb-6 border border-green-100/50">
-            <ImageIcon size={14} className="text-[#006837]" />
-            <span className="text-[#006837] text-[0.8rem] font-black uppercase tracking-widest">Photo Gallery</span>
-          </span>
-          <h1 className="text-5xl md:text-[3.5rem] font-serif font-bold text-gray-900 mb-6">
-            Our Memories in Focus<span className="text-[#006837]">.</span>
+    <main className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-[#006837] text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-2 text-sm mb-6 hover:underline"
+          >
+            <ArrowLeft size={16} /> Back to Home
+          </Link>
+          <h1 className="text-5xl md:text-6xl font-serif font-bold text-white mb-4">
+            Photo Gallery
           </h1>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            A visual journey through our events, reunions, and community impact. 
-            Celebrating the bond that keeps the Class of 2006 together.
+          <p className="text-xl text-green-100">
+            Memories and moments from FGCW Class of 2006
           </p>
         </div>
-
-        {/* Category Links */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
-          {categories.map((cat) => (
-            <Link
-              key={cat.slug}
-              href={cat.slug === 'all' ? '/gallery' : `/gallery/${cat.slug}`}
-              className={`px-6 py-3 rounded-full text-sm font-bold uppercase tracking-widest transition-all ${
-                cat.slug === 'all'
-                  ? "bg-[#006837] text-white shadow-lg shadow-green-900/20"
-                  : "bg-gray-100 text-gray-500 hover:bg-gray-200"
-              }`}
-            >
-              {cat.name}
-            </Link>
-          ))}
-        </div>
-
-        {/* Gallery Grid (Showing All) */}
-        {galleryItems.length === 0 ? (
-            <p className="text-center text-gray-500">No images found in gallery.</p>
-        ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {galleryItems.map((item) => (
-                <div key={item.id} className="group cursor-pointer">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100 mb-4 shadow-sm group-hover:shadow-xl transition-all duration-500">
-                    <div 
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: `url('${item.sourceUrl}')` }}
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
-                </div>
-                
-                <div>
-                    <h3 className="text-lg font-serif font-bold text-gray-900 group-hover:text-[#006837] transition-colors">
-                    {item.title || item.altText || "Untitled"}
-                    </h3>
-                </div>
-                </div>
-            ))}
-            </div>
-        )}
-
       </div>
+
+      {/* Category Tabs */}
+      <div className="bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex overflow-x-auto gap-2 py-4 scrollbar-hide">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-6 py-2 rounded-full font-semibold whitespace-nowrap transition-all ${
+                  activeCategory === category
+                    ? 'bg-[#006837] text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {category}
+                <span className="ml-2 text-xs opacity-75">
+                  ({category === 'All Photos' 
+                    ? galleryData['All Photos'].length 
+                    : (galleryData[category as keyof typeof galleryData] as any[]).length})
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Photo Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {currentPhotos.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {currentPhotos.map((photo, index) => (
+              <div
+                key={index}
+                className="aspect-square overflow-hidden rounded-xl bg-gray-200 cursor-pointer group relative"
+                onClick={() => setLightboxImage(photo.src)}
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  onError={(e) => {
+                    // Fallback for missing images
+                    (e.target as HTMLImageElement).src = '/placeholder-image.jpg';
+                  }}
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                  <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity font-semibold">
+                    View
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 max-w-2xl mx-auto">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 mb-4">
+                No Photos Yet
+              </h2>
+              <p className="text-gray-600">
+                Photos in the "{activeCategory}" category will appear here.
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Lightbox */}
+      {lightboxImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={() => setLightboxImage(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+            onClick={() => setLightboxImage(null)}
+          >
+            <X size={32} />
+          </button>
+          <img
+            src={lightboxImage}
+            alt="Full size"
+            className="max-w-full max-h-full object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </main>
   );
 }
