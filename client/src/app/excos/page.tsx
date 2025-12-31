@@ -47,7 +47,7 @@ export default function ExcosPage() {
     },
     {
       name: "Efehi Osamagbe Igbineweka",
-      position: "Public Relations Officer 2",
+      position: "PRO 2",
       house: "Independent House (Pendo)",
       photo: "/excos/pro2.jpg",
       email: "pro2@fgcw06.org",
