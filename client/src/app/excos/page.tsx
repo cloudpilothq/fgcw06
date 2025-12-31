@@ -11,13 +11,6 @@ export default function ExcosPage() {
       linkedin: "#"
     },
     {
-      name: "Mr. Faisal Saddiq",
-      position: "President",
-      photo: "/excos/president.jpg",
-      email: "president@fgcw06.org",
-      linkedin: "#"
-    },
-    {
       name: "Mrs. Sarah Johnson",
       position: "Vice President",
       photo: "/excos/vp.jpg",
@@ -50,6 +43,13 @@ export default function ExcosPage() {
       position: "Public Relations Officer",
       photo: "/excos/pro.jpg",
       email: "pro@fgcw06.org",
+      linkedin: "#"
+    },
+    {
+      name: "Efehi Osamagbe Igbineweka",
+      position: "Public Relations Officer 2",
+      photo: "/excos/pro2.jpg",
+      email: "pro2@fgcw06.org",
       linkedin: "#"
     },
     {
