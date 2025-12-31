@@ -105,12 +105,19 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       `;
       data = await getWordPressData(query);
       const allPosts = data?.posts?.nodes || [];
+      console.log('All posts found:', allPosts.length);
+      console.log('Looking for slug:', params.slug);
+      console.log('Available slugs:', allPosts.map((p: any) => p.slug));
+      
       post = allPosts.find((p: any) => p.slug === params.slug);
+      console.log('Post found:', post ? 'YES' : 'NO');
       
       if (!post && allPosts.length > 0) {
         errorMessage = `Available slugs: ${allPosts.map((p: any) => p.slug).join(', ')}`;
       }
     }
+    
+    console.log('Final post object:', post ? 'EXISTS' : 'NULL');
   } catch (error) {
     console.error('Error fetching blog post:', error);
     errorMessage = `Error: ${error}`;
