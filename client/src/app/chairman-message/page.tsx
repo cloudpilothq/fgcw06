@@ -34,7 +34,7 @@ export default function ChairmanMessagePage() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="absolute bottom-8 left-8 text-white">
-              <h2 className="text-3xl font-serif font-bold mb-2">Mr. Austin Ogbe</h2>
+              <h2 className="text-3xl font-serif font-bold mb-2 text-white">Mr. Austin Ogbe</h2>
               <p className="text-lg">Chairman, FGCW Class of 2006</p>
               <p className="text-sm text-gray-200">National House (Nato)</p>
             </div>
