@@ -1,7 +1,7 @@
 'use server';
  
 import { auth } from '@/auth';
-import { updateUserProfile } from '@/lib/queries';
+import { updateUserProfile } from '@/lib/mockData';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 

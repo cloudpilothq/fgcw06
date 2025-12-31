@@ -1,18 +1,18 @@
 import React from 'react';
 import { Briefcase, Calendar, ExternalLink, Building2 } from 'lucide-react';
 import Link from 'next/link';
-import { getWordPressData, GET_JOBS } from '@/lib/queries';
+import { getJobs } from '@/lib/mockData';
 
 export default async function JobsPage() {
   let jobs: any[] = [];
 
   try {
-    const data = await getWordPressData(GET_JOBS);
-    if (data?.jobs?.nodes) {
-      jobs = data.jobs.nodes;
+    const data = await getJobs();
+    if (data?.nodes) {
+      jobs = data.nodes;
     }
   } catch (e) {
-    console.error("WP Jobs Fetch Error:", e);
+    console.error("Jobs Fetch Error:", e);
   }
 
   return (

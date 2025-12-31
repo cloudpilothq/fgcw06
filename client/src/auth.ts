@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { loginUser } from "@/lib/queries";
+import { loginUser } from "@/lib/mockData";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [

@@ -1,6 +1,6 @@
 'use server';
 
-import { submitContactForm } from "@/lib/queries";
+import { submitContactForm } from "@/lib/mockData";
 
 export async function submitContact(prevState: string | null, formData: FormData) {
   const name = formData.get('name') as string;

@@ -1,4 +1,4 @@
-import { getWordPressData, GET_BLOG_POSTS } from '@/lib/queries';
+import { getBlogPosts } from '@/lib/mockData';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
 
@@ -6,8 +6,8 @@ export default async function NewsPage() {
   let posts: any[] = [];
 
   try {
-    const data = await getWordPressData(GET_BLOG_POSTS);
-    posts = data?.posts?.nodes || [];
+    const data = await getBlogPosts();
+    posts = data?.nodes || [];
   } catch (error) {
     console.error('Error fetching blog posts:', error);
   }

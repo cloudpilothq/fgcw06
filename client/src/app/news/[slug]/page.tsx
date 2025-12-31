@@ -1,4 +1,4 @@
-import { getWordPressData } from '@/lib/queries';
+import { getBlogPosts } from '@/lib/mockData';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 
@@ -7,40 +7,9 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 async function getBlogPost(slug: string) {
-  const query = `
-    query GetSinglePost {
-      posts(first: 100) {
-        nodes {
-          id
-          title
-          content
-          excerpt
-          date
-          slug
-          author {
-            node {
-              name
-            }
-          }
-          featuredImage {
-            node {
-              sourceUrl
-              altText
-            }
-          }
-          categories {
-            nodes {
-              name
-            }
-          }
-        }
-      }
-    }
-  `;
-
   try {
-    const data = await getWordPressData(query);
-    const posts = data?.posts?.nodes || [];
+    const data = await getBlogPosts();
+    const posts = data?.nodes || [];
     const post = posts.find((p: any) => p.slug === slug);
     return { post, allSlugs: posts.map((p: any) => p.slug) };
   } catch (error) {

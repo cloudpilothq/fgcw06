@@ -1,17 +1,17 @@
 import React from 'react';
-import { getWordPressData, GET_ALUMNI } from '@/lib/queries';
+import { MOCK_USERS } from '@/lib/mockData';
 import DirectoryClient from '@/components/DirectoryClient';
 
-export default async function DirectoryPage() {
-  let alumni = [];
-  try {
-    const data = await getWordPressData(GET_ALUMNI);
-    if (data?.alumni?.nodes) {
-      alumni = data.alumni.nodes;
+export default function DirectoryPage() {
+  const alumni = MOCK_USERS.nodes.map(user => ({
+    ...user,
+    title: user.name,
+    alumniDetails: {
+      house: "Independence",
+      profession: user.description,
+      image: { sourceUrl: user.avatar?.url || "https://placehold.co/100x100" }
     }
-  } catch (e) {
-    console.error("WP Directory Fetch Error:", e);
-  }
-
+  }));
+  
   return <DirectoryClient initialAlumni={alumni} />;
 }

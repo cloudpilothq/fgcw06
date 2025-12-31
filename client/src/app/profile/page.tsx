@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
-import { getUserProfile } from '@/lib/queries';
+import { getUserProfile } from '@/lib/mockData';
 import ProfileForm from '@/components/ProfileForm';
 
 export default async function ProfilePage() {

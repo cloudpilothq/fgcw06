@@ -1,17 +1,17 @@
 import React from 'react';
 import { Calendar, MapPin, Monitor } from 'lucide-react';
-import { getWordPressData, GET_EVENTS } from '@/lib/queries';
+import { getEvents } from '@/lib/mockData';
 
 export default async function EventsPage() {
   let events: any[] = [];
 
   try {
-    const data = await getWordPressData(GET_EVENTS);
-    if (data?.events?.nodes) {
-      events = data.events.nodes;
+    const data = await getEvents();
+    if (data?.nodes) {
+      events = data.nodes;
     }
   } catch (e) {
-    console.error("WP Events Fetch Error:", e);
+    console.error("Events Fetch Error:", e);
   }
 
   return (

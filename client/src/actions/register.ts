@@ -1,7 +1,7 @@
 'use server';
  
 import { RegisterSchema, RegisterState } from '@/lib/definitions';
-import { registerUser } from '@/lib/queries';
+import { registerUser } from '@/lib/mockData';
 
 export async function register(prevState: RegisterState, formData: FormData) {
   const validatedFields = RegisterSchema.safeParse({

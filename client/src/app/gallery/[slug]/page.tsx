@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, X } from 'lucide-react';
-import { getWordPressData } from '@/lib/queries';
+import { getGalleryAlbums } from '@/lib/mockData';
 
 export default function AlbumPage({ params }: { params: Promise<{ slug: string }> }) {
   const [slug, setSlug] = useState('');
@@ -22,41 +22,21 @@ export default function AlbumPage({ params }: { params: Promise<{ slug: string }
 
   const fetchAlbum = async (albumSlug: string) => {
     try {
-      const query = `
-        query GetAlbum {
-          postBy(slug: "${albumSlug}") {
-            id
-            title
-            content
-            excerpt
-            date
-            categories {
-              nodes {
-                name
-              }
-            }
-            featuredImage {
-              node {
-                sourceUrl
-                altText
-              }
-            }
-          }
-        }
-      `;
-
-      const data = await getWordPressData(query);
-      const albumData = data?.postBy;
+      const data = await getGalleryAlbums();
+      const albumData = data?.nodes?.find((node: any) => node.slug === albumSlug);
       
       if (albumData) {
         setAlbum(albumData);
         
-        // Extract all images from content
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(albumData.content, 'text/html');
-        const imgElements = doc.querySelectorAll('img');
-        const imgUrls = Array.from(imgElements).map(img => img.src);
-        setImages(imgUrls);
+        // Mock images for the gallery since we don't have HTML content to parse
+        const mockImages = [
+          albumData.featuredImage?.node?.sourceUrl,
+          "https://placehold.co/600x600/006837/ffffff?text=Gallery+Photo+1",
+          "https://placehold.co/600x600/006837/ffffff?text=Gallery+Photo+2",
+          "https://placehold.co/600x600/006837/ffffff?text=Gallery+Photo+3"
+        ].filter(Boolean) as string[];
+        
+        setImages(mockImages);
       }
     } catch (error) {
       console.error('Error fetching album:', error);

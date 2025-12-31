@@ -5,28 +5,13 @@ import React from 'react';
 import GallerySection from '@/components/GallerySection';
 // import YouTubeSection from '@/components/YouTubeSection';
 import { MapPin, Monitor } from 'lucide-react';
-import { getWordPressData } from "@/lib/queries";
 
 export default async function HomePage() {
   let title = "A Thriving Global Alumni Network";
   let description = "Pro Unitate";
 
-  try {
-    const data = await getWordPressData(`
-      query NewQuery {
-        generalSettings {
-          title
-          description
-        }
-      }
-    `);
-    if (data?.generalSettings) {
-      if (data.generalSettings.title) title = data.generalSettings.title;
-      if (data.generalSettings.description) description = data.generalSettings.description;
-    }
-  } catch (e) {
-    console.error("WP Fetch Error:", e);
-  }
+  // Mock data or static content used directly
+
 
   return (
     <main>

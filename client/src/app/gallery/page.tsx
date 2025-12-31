@@ -1,4 +1,4 @@
-import { getWordPressData, GET_GALLERY_ALBUMS } from '@/lib/queries';
+import { getGalleryAlbums } from '@/lib/mockData';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Images } from 'lucide-react';
 
@@ -7,8 +7,8 @@ export default async function GalleryPage() {
   let categories: string[] = [];
 
   try {
-    const data = await getWordPressData(GET_GALLERY_ALBUMS);
-    albums = data?.posts?.nodes || [];
+    const data = await getGalleryAlbums();
+    albums = data?.nodes || [];
     
     // Extract unique categories
     const catSet = new Set<string>();
