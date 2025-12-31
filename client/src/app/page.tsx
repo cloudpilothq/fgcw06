@@ -278,7 +278,7 @@ function ImpactSection() {
       {/* Background Image: Ideally a wide shot of FGC Warri or a major landmark */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat grayscale-[30%]"
-        style={{ backgroundImage: "url('/warri-skyline.jpg')" }}
+        style={{ backgroundImage: "url('/warri-skyline.jpeg')" }}
       />
       
       {/* Dark Overlay for better contrast on mobile */}
