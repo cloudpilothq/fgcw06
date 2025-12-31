@@ -4,46 +4,109 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, X } from 'lucide-react';
 
-// Define gallery categories and their photos
-const galleryData = {
-  'All Photos': [
-    // Events
-    { src: '/gallery/events/reunion-2024.jpg', alt: 'Alumni Reunion 2024', category: 'Events' },
-    { src: '/gallery/events/annual-dinner.jpg', alt: 'Annual Dinner', category: 'Events' },
-    
-    // School Memories
-    { src: '/gallery/school-memories/old-campus.jpg', alt: 'FGC Warri Campus', category: 'School Memories' },
-    { src: '/gallery/school-memories/graduation-2006.jpg', alt: 'Graduation Day 2006', category: 'School Memories' },
-    
-    // Achievements
-    { src: '/gallery/achievements/award-ceremony.jpg', alt: 'Award Ceremony', category: 'Achievements' },
-    
-    // Community Service
-    { src: '/gallery/community/charity-event.jpg', alt: 'Charity Event', category: 'Community Service' },
-    
-    // Social Gatherings
-    { src: '/gallery/social/meetup.jpg', alt: 'Alumni Meetup', category: 'Social Gatherings' },
+// Gallery photos organized by category
+const galleryPhotos = {
+  events: [
+    'Photo from General Uchezz(12).jpg', 'Photo from General Uchezz(13).jpg', 'Photo from General Uchezz(14).jpg',
+    'Photo from General Uchezz(15).jpg', 'Photo from General Uchezz(16).jpg', 'Photo from General Uchezz(17).jpg',
+    'Photo from General Uchezz(18).jpg', 'Photo from General Uchezz(19).jpg', 'Photo from General Uchezz(20).jpg',
+    'Photo from General Uchezz(21).jpg', 'Photo from General Uchezz(22).jpg', 'Photo from General Uchezz(23).jpg',
+    'Photo from General Uchezz(24).jpg', 'Photo from General Uchezz(25).jpg', 'Photo from General Uchezz(26).jpg',
+    'Photo from General Uchezz(27).jpg', 'Photo from General Uchezz(28).jpg', 'Photo from General Uchezz(29).jpg',
+    'Photo from General Uchezz(30).jpg', 'Photo from General Uchezz(31).jpg', 'Photo from General Uchezz(32).jpg',
+    'Photo from General Uchezz(33).jpg', 'Photo from General Uchezz(34).jpg', 'Photo from General Uchezz(35).jpg',
+    'Photo from General Uchezz(36).jpg', 'Photo from General Uchezz(37).jpg', 'Photo from General Uchezz(38).jpg',
+    'Photo from General Uchezz(39).jpg', 'Photo from General Uchezz(40).jpg', 'Photo from General Uchezz(41).jpg',
+    'Photo from General Uchezz(42).jpg', 'Photo from General Uchezz(43).jpg', 'Photo from General Uchezz(44).jpg',
+    'Photo from General Uchezz(45).jpg', 'Photo from General Uchezz(46).jpg', 'Photo from General Uchezz(47).jpg',
   ],
-  'Events': [],
-  'School Memories': [],
-  'Achievements': [],
-  'Community Service': [],
-  'Social Gatherings': [],
+  social: [
+    'Photo from General Uchezz(100).jpg', 'Photo from General Uchezz(101).jpg', 'Photo from General Uchezz(102).jpg',
+    'Photo from General Uchezz(103).jpg', 'Photo from General Uchezz(104).jpg', 'Photo from General Uchezz(105).jpg',
+    'Photo from General Uchezz(106).jpg', 'Photo from General Uchezz(107).jpg', 'Photo from General Uchezz(108).jpg',
+    'Photo from General Uchezz(109).jpg', 'Photo from General Uchezz(110).jpg', 'Photo from General Uchezz(111).jpg',
+    'Photo from General Uchezz(112).jpg', 'Photo from General Uchezz(113).jpg', 'Photo from General Uchezz(114).jpg',
+    'Photo from General Uchezz(115).jpg', 'Photo from General Uchezz(116).jpg', 'Photo from General Uchezz(117).jpg',
+    'Photo from General Uchezz(118).jpg', 'Photo from General Uchezz(119).jpg', 'Photo from General Uchezz(120).jpg',
+    'Photo from General Uchezz(121).jpg', 'Photo from General Uchezz(122).jpg', 'Photo from General Uchezz(123).jpg',
+    'Photo from General Uchezz(124).jpg', 'Photo from General Uchezz(125).jpg', 'Photo from General Uchezz(126).jpg',
+    'Photo from General Uchezz(127).jpg', 'Photo from General Uchezz(128).jpg', 'Photo from General Uchezz(129).jpg',
+    'Photo from General Uchezz(130).jpg', 'Photo from General Uchezz(131).jpg', 'Photo from General Uchezz(132).jpg',
+    'Photo from General Uchezz(133).jpg', 'Photo from General Uchezz(134).jpg', 'Photo from General Uchezz(135).jpg',
+    'Photo from General Uchezz(136).jpg', 'Photo from General Uchezz(137).jpg', 'Photo from General Uchezz(138).jpg',
+    'Photo from General Uchezz(139).jpg', 'Photo from General Uchezz(140).jpg', 'Photo from General Uchezz(141).jpg',
+    'Photo from General Uchezz(142).jpg', 'Photo from General Uchezz(143).jpg', 'Photo from General Uchezz(144).jpg',
+    'Photo from General Uchezz(145).jpg', 'Photo from General Uchezz(146).jpg', 'Photo from General Uchezz(147).jpg',
+    'Photo from General Uchezz(148).jpg', 'Photo from General Uchezz(49).jpg', 'Photo from General Uchezz(50).jpg',
+    'Photo from General Uchezz(51).jpg', 'Photo from General Uchezz(52).jpg', 'Photo from General Uchezz(53).jpg',
+    'Photo from General Uchezz(54).jpg', 'Photo from General Uchezz(55).jpg', 'Photo from General Uchezz(56).jpg',
+    'Photo from General Uchezz(57).jpg', 'Photo from General Uchezz(58).jpg', 'Photo from General Uchezz(59).jpg',
+    'Photo from General Uchezz(60).jpg', 'Photo from General Uchezz(61).jpg', 'Photo from General Uchezz(62).jpg',
+    'Photo from General Uchezz(63).jpg', 'Photo from General Uchezz(64).jpg', 'Photo from General Uchezz(65).jpg',
+    'Photo from General Uchezz(66).jpg', 'Photo from General Uchezz(67).jpg', 'Photo from General Uchezz(68).jpg',
+    'Photo from General Uchezz(69).jpg', 'Photo from General Uchezz(70).jpg', 'Photo from General Uchezz(71).jpg',
+    'Photo from General Uchezz(72).jpg', 'Photo from General Uchezz(73).jpg',
+  ],
+  sports: [
+    'Photo from General Uchezz(74).jpg', 'Photo from General Uchezz(75).jpg', 'Photo from General Uchezz(76).jpg',
+    'Photo from General Uchezz(77).jpg', 'Photo from General Uchezz(78).jpg', 'Photo from General Uchezz(79).jpg',
+    'Photo from General Uchezz(80).jpg', 'Photo from General Uchezz(81).jpg', 'Photo from General Uchezz(82).jpg',
+    'Photo from General Uchezz(83).jpg', 'Photo from General Uchezz(84).jpg', 'Photo from General Uchezz(85).jpg',
+  ],
 };
 
-// Populate category-specific arrays
-galleryData['All Photos'].forEach(photo => {
-  if (galleryData[photo.category as keyof typeof galleryData]) {
-    (galleryData[photo.category as keyof typeof galleryData] as typeof photo[]).push(photo);
-  }
-});
+// Build gallery data with all photos
+const buildGalleryData = () => {
+  const allPhotos: any[] = [];
+  
+  Object.entries(galleryPhotos).forEach(([category, photos]) => {
+    photos.forEach(photo => {
+      allPhotos.push({
+        src: `/gallery/${category}/${photo}`,
+        alt: photo.replace('.jpg', '').replace(/[()]/g, ' '),
+        category: category.charAt(0).toUpperCase() + category.slice(1),
+      });
+    });
+  });
+  
+  return {
+    'All Photos': allPhotos,
+    'Events': allPhotos.filter(p => p.category === 'Events'),
+    'Social': allPhotos.filter(p => p.category === 'Social'),
+    'Sports': allPhotos.filter(p => p.category === 'Sports'),
+    'School Memories': allPhotos.filter(p => p.category === 'School-memories'),
+    'Achievements': allPhotos.filter(p => p.category === 'Achievements'),
+    'Community Service': allPhotos.filter(p => p.category === 'Community'),
+  };
+};
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState('All Photos');
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const categories = Object.keys(galleryData);
-  const currentPhotos = galleryData[activeCategory as keyof typeof galleryData];
+  const galleryData = buildGalleryData();
+  const categories = Object.keys(galleryData).filter(cat => 
+    (galleryData[cat as keyof typeof galleryData] as any[]).length > 0
+  );
+  const currentPhotos = galleryData[activeCategory as keyof typeof galleryData] as any[];
+
+  const openLightbox = (src: string, index: number) => {
+    setLightboxImage(src);
+    setLightboxIndex(index);
+  };
+
+  const nextPhoto = () => {
+    const nextIndex = (lightboxIndex + 1) % currentPhotos.length;
+    setLightboxIndex(nextIndex);
+    setLightboxImage(currentPhotos[nextIndex].src);
+  };
+
+  const prevPhoto = () => {
+    const prevIndex = (lightboxIndex - 1 + currentPhotos.length) % currentPhotos.length;
+    setLightboxIndex(prevIndex);
+    setLightboxImage(currentPhotos[prevIndex].src);
+  };
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -81,9 +144,7 @@ export default function GalleryPage() {
               >
                 {category}
                 <span className="ml-2 text-xs opacity-75">
-                  ({category === 'All Photos' 
-                    ? galleryData['All Photos'].length 
-                    : (galleryData[category as keyof typeof galleryData] as any[]).length})
+                  ({(galleryData[category as keyof typeof galleryData] as any[]).length})
                 </span>
               </button>
             ))}
@@ -94,24 +155,20 @@ export default function GalleryPage() {
       {/* Photo Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {currentPhotos.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
             {currentPhotos.map((photo, index) => (
               <div
                 key={index}
-                className="aspect-square overflow-hidden rounded-xl bg-gray-200 cursor-pointer group relative"
-                onClick={() => setLightboxImage(photo.src)}
+                className="aspect-square overflow-hidden rounded-lg bg-gray-200 cursor-pointer group relative"
+                onClick={() => openLightbox(photo.src, index)}
               >
                 <img
                   src={photo.src}
                   alt={photo.alt}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  onError={(e) => {
-                    // Fallback for missing images
-                    (e.target as HTMLImageElement).src = '/placeholder-image.jpg';
-                  }}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                  <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity font-semibold">
+                  <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity font-semibold text-sm">
                     View
                   </span>
                 </div>
@@ -135,21 +192,43 @@ export default function GalleryPage() {
       {/* Lightbox */}
       {lightboxImage && (
         <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
           onClick={() => setLightboxImage(null)}
         >
           <button
-            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-50"
             onClick={() => setLightboxImage(null)}
           >
             <X size={32} />
           </button>
+          
+          {/* Previous Button */}
+          <button
+            className="absolute left-4 text-white hover:text-gray-300 transition-colors text-4xl font-bold"
+            onClick={(e) => { e.stopPropagation(); prevPhoto(); }}
+          >
+            ‹
+          </button>
+          
+          {/* Next Button */}
+          <button
+            className="absolute right-4 text-white hover:text-gray-300 transition-colors text-4xl font-bold"
+            onClick={(e) => { e.stopPropagation(); nextPhoto(); }}
+          >
+            ›
+          </button>
+          
           <img
             src={lightboxImage}
             alt="Full size"
             className="max-w-full max-h-full object-contain"
             onClick={(e) => e.stopPropagation()}
           />
+          
+          {/* Photo Counter */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
+            {lightboxIndex + 1} / {currentPhotos.length}
+          </div>
         </div>
       )}
     </main>
