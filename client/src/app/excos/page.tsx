@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, Mail, Linkedin } from 'lucide-react';
+import { ArrowLeft, Mail, Linkedin, Facebook, Twitter, Instagram } from 'lucide-react';
 
 export default function ExcosPage() {
   const excos = [
@@ -48,13 +48,12 @@ export default function ExcosPage() {
     {
       name: "Efehi Osamagbe Igbineweka",
       position: "Public Relations Officer 2",
+      house: "Independent House (Pendo)",
       photo: "/excos/pro2.jpg",
       email: "pro2@fgcw06.org",
-      house: "Independent House (Pendo)",
       facebook: "#",
       twitter: "#",
       instagram: "#",
-      whatsapp: "#",
       linkedin: "#"
     },
     {
@@ -120,6 +119,9 @@ export default function ExcosPage() {
                 <p className="text-sm font-semibold text-[#006837] uppercase tracking-wider mb-4">
                   {exco.position}
                 </p>
+                <p className="text-sm font-semibold text-[#006837] uppercase tracking-wider mb-4">
+                  {exco.house}
+                </p>
 
                 {/* Contact Icons */}
                 <div className="flex justify-center gap-3">
@@ -138,7 +140,34 @@ export default function ExcosPage() {
                     title="LinkedIn"
                   >
                     <Linkedin size={18} />
-                  </a>
+                    </a>
+                    <a
+                    href={exco.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-gray-100 rounded-full hover:bg-[#006837] hover:text-white transition-colors"
+                    title="Facebook"
+                    >
+                    <Facebook size={18} />
+                    </a>
+                    <a
+                    href={exco.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-gray-100 rounded-full hover:bg-[#006837] hover:text-white transition-colors"
+                    title="Twitter"
+                    >
+                    <Twitter size={18} />
+                    </a>
+                    <a
+                    href={exco.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-gray-100 rounded-full hover:bg-[#006837] hover:text-white transition-colors"
+                    title="Instagram"
+                    >
+                    <Instagram size={18} />
+                    </a>
                 </div>
               </div>
             </div>
