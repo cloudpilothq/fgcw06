@@ -1,100 +1,129 @@
-import React from 'react';
+import { getWordPressData, GET_BLOG_POSTS } from '@/lib/queries';
 import Link from 'next/link';
-import { Calendar, User, ArrowRight, Newspaper } from 'lucide-react';
-import { getWordPressData, GET_POSTS } from '@/lib/queries';
+import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
 
 export default async function NewsPage() {
   let posts: any[] = [];
 
   try {
-    const data = await getWordPressData(GET_POSTS);
-    if (data?.posts?.nodes) {
-      posts = data.posts.nodes;
-    }
-  } catch (e) {
-    console.error("WP Posts Fetch Error:", e);
+    const data = await getWordPressData(GET_BLOG_POSTS);
+    posts = data?.posts?.nodes || [];
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
   }
 
   return (
-    <main className="bg-white min-h-screen pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center mb-20">
-            <span className="inline-flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full mb-6 border border-green-100/50">
-            <Newspaper size={14} className="text-[#006837]" />
-            <span className="text-[#006837] text-[0.8rem] font-black uppercase tracking-widest">Class Notes & News</span>
-          </span>
-          <h1 className="text-5xl md:text-[3.5rem] font-serif font-bold text-gray-900 mb-6">
-            Latest Updates<span className="text-[#006837]">.</span>
+    <main className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-[#006837] text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-2 text-sm mb-6 hover:underline"
+          >
+            <ArrowLeft size={16} /> Back to Home
+          </Link>
+          <h1 className="text-5xl md:text-6xl font-serif font-bold text-white mb-4">
+            News & Updates
           </h1>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            Stay informed about our alumni achievements, upcoming reunions, 
-            and important announcements from the Class of 2006.
+          <p className="text-xl text-green-100">
+            Stay informed with the latest news, announcements, and stories from FGCW 06' Alumni
           </p>
         </div>
+      </div>
 
-        {/* Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {posts.length === 0 ? (
-             <div className="col-span-full text-center py-20 text-gray-500">
-                <p>No news articles found. Check back later for updates.</p>
-             </div>
-          ) : (
-            posts.map((post) => (
-              <article key={post.id} className="group flex flex-col bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                {/* Image */}
-                <div className="aspect-[16/9] bg-gray-100 relative overflow-hidden">
-                  {post.featuredImage?.node?.sourceUrl ? (
+      {/* Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {posts.length > 0 ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post) => (
+              <article 
+                key={post.id} 
+                className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col"
+              >
+                {/* Featured Image */}
+                {post.featuredImage?.node?.sourceUrl && (
+                  <div className="aspect-video overflow-hidden">
                     <img 
                       src={post.featuredImage.node.sourceUrl} 
-                      alt={post.title} 
-                      className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                      alt={post.featuredImage.node.altText || post.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-green-50 text-[#006837]/20">
-                      <Newspaper size={48} />
-                    </div>
-                  )}
-                </div>
+                  </div>
+                )}
 
                 {/* Content */}
-                <div className="p-8 flex flex-col flex-grow">
-                  <div className="flex items-center gap-4 text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={12} />
-                      {new Date(post.date).toLocaleDateString()}
-                    </span>
+                <div className="p-6 flex flex-col flex-grow">
+                  {/* Meta Info */}
+                  <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                    <div className="flex items-center gap-1">
+                      <Calendar size={14} />
+                      <span>{new Date(post.date).toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'short', 
+                        day: 'numeric' 
+                      })}</span>
+                    </div>
                     {post.author?.node?.name && (
-                       <span className="flex items-center gap-1">
-                        <User size={12} />
-                        {post.author.node.name}
-                      </span>
+                      <div className="flex items-center gap-1">
+                        <User size={14} />
+                        <span>{post.author.node.name}</span>
+                      </div>
                     )}
                   </div>
 
-                  <h2 className="text-2xl font-serif font-bold text-gray-900 mb-4 line-clamp-2 group-hover:text-[#006837] transition-colors">
+                  {/* Title */}
+                  <h2 className="text-2xl font-serif font-bold text-gray-900 mb-3 line-clamp-2">
                     {post.title}
                   </h2>
 
+                  {/* Excerpt */}
                   <div 
-                    className="text-gray-600 leading-relaxed mb-6 line-clamp-3 text-sm flex-grow"
+                    className="text-gray-600 mb-4 line-clamp-3 flex-grow"
                     dangerouslySetInnerHTML={{ __html: post.excerpt }}
                   />
 
+                  {/* Categories */}
+                  {post.categories?.nodes?.length > 0 && (
+                    <div className="flex items-center gap-2 mb-4 flex-wrap">
+                      <Tag size={14} className="text-gray-400" />
+                      {post.categories.nodes.slice(0, 3).map((category: any, index: number) => (
+                        <span 
+                          key={index}
+                          className="text-xs bg-green-50 text-[#006837] px-2 py-1 rounded-full font-semibold"
+                        >
+                          {category.name}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Read More Link */}
                   <Link 
-                    href={`/news/${post.slug || '#'}`} 
-                    className="inline-flex items-center gap-2 text-[#006837] font-bold uppercase tracking-widest text-xs mt-auto group/link"
+                    href={`/news/${post.slug}`}
+                    className="inline-flex items-center gap-2 text-[#006837] font-semibold hover:underline mt-auto"
                   >
-                    Read Story 
-                    <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                    Read More →
                   </Link>
                 </div>
               </article>
-            ))
-          )}
-        </div>
-
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 max-w-2xl mx-auto">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 mb-4">
+                No News Yet
+              </h2>
+              <p className="text-gray-600 mb-6">
+                There are currently no blog posts available. Check back soon for updates!
+              </p>
+              <p className="text-sm text-gray-500">
+                Blog posts published in WordPress will automatically appear here.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );

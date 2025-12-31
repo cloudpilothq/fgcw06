@@ -253,3 +253,34 @@ export const GET_LEGAL_PAGE = `
     }
   }
 `;
+
+export const GET_BLOG_POSTS = `
+  query GetBlogPosts {
+    posts(first: 20, where: {orderby: {field: DATE, order: DESC}}) {
+      nodes {
+        id
+        title
+        excerpt
+        content
+        date
+        slug
+        author {
+          node {
+            name
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        categories {
+          nodes {
+            name
+          }
+        }
+      }
+    }
+  }
+`;
