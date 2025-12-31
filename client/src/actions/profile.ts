@@ -1,7 +1,7 @@
 'use server';
  
 import { auth } from '@/auth';
-import { updateMemberProfile } from '@/lib/queries';
+import { updateUserProfile } from '@/lib/queries';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
@@ -26,7 +26,7 @@ export async function updateProfile(prevState: any, formData: FormData) {
     // You will need to expand the GraphQL mutation in queries.ts to accept more fields 
     // (bio, phone, linkedin) as you add them to your WP schema.
     
-    await updateMemberProfile(userId as string, profession, "Unknown Location", token);
+    await updateUserProfile(userId as string, profession, "Unknown Location", token);
     
     revalidatePath('/profile');
     return { message: "Profile updated successfully!", success: true };
