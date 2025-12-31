@@ -1,6 +1,25 @@
-import { getWordPressData } from '@/lib/queries';
+import { getWordPressData, GET_BLOG_POSTS } from '@/lib/queries';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
+
+// Enable dynamic rendering for this page
+export const dynamic = 'force-dynamic';
+
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+  try {
+    const data = await getWordPressData(GET_BLOG_POSTS);
+    const posts = data?.posts?.nodes || [];
+    
+    return posts.map((post: any) => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return [];
+  }
+}
+
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   let post: any = null;
