@@ -59,7 +59,7 @@ export default function AboutPage() {
           <div className="relative">
             <div className="aspect-[4/3] bg-gray-200 rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="/alumni-group.jpg" 
+                src="/network-group.jpg" 
                 alt="FGCW 06 Alumni" 
                 className="w-full h-full object-cover"
               />
