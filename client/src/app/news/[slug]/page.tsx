@@ -1,79 +1,24 @@
+import { getWordPressData, GET_BLOG_POSTS } from '@/lib/queries';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 
-// Enable dynamic rendering
+// This tells Next.js to render this page dynamically
 export const dynamic = 'force-dynamic';
 
-async function getPost(slug: string) {
-  try {
-    // Use WordPress REST API instead of GraphQL
-    const wpGraphQLUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || '';
-    const wpUrl = wpGraphQLUrl.replace('/graphql', '');
-    const restUrl = `${wpUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`;
-    
-    console.log('WordPress GraphQL URL:', wpGraphQLUrl);
-    console.log('WordPress Base URL:', wpUrl);
-    console.log('REST API URL:', restUrl);
-    console.log('Looking for slug:', slug);
-    
-    const res = await fetch(restUrl, { 
-      next: { revalidate: 60 },
-      cache: 'no-store' 
-    });
-    
-    console.log('Response status:', res.status);
-    console.log('Response OK:', res.ok);
-    
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error('REST API error:', res.status, errorText);
-      return null;
-    }
-    
-    const posts = await res.json();
-    console.log('Posts received:', posts.length);
-    
-    if (!posts || posts.length === 0) {
-      console.error('No post found for slug:', slug);
-      return null;
-    }
-    
-    const post = posts[0];
-    console.log('Post found:', post.title?.rendered);
-    
-    // Transform REST API response to match our expected format
-    return {
-      id: post.id,
-      title: post.title?.rendered || '',
-      content: post.content?.rendered || '',
-      excerpt: post.excerpt?.rendered || '',
-      date: post.date,
-      slug: post.slug,
-      author: {
-        node: {
-          name: post._embedded?.author?.[0]?.name || 'Unknown'
-        }
-      },
-      featuredImage: post._embedded?.['wp:featuredmedia']?.[0] ? {
-        node: {
-          sourceUrl: post._embedded['wp:featuredmedia'][0].source_url,
-          altText: post._embedded['wp:featuredmedia'][0].alt_text || ''
-        }
-      } : null,
-      categories: {
-        nodes: post._embedded?.['wp:term']?.[0]?.map((cat: any) => ({
-          name: cat.name
-        })) || []
-      }
-    };
-  } catch (error) {
-    console.error('Error fetching post:', error);
-    return null;
-  }
-}
-
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+  let post: any = null;
+  let allPosts: any[] = [];
+
+  try {
+    // Get all posts using the same query as the news listing page
+    const data = await getWordPressData(GET_BLOG_POSTS);
+    allPosts = data?.posts?.nodes || [];
+    
+    // Find the post with matching slug
+    post = allPosts.find((p: any) => p.slug === params.slug);
+  } catch (error) {
+    console.error('Error fetching blog post:', error);
+  }
 
   if (!post) {
     return (
@@ -81,7 +26,14 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <div className="text-center max-w-2xl mx-auto p-8">
           <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">Post Not Found</h1>
           <p className="text-gray-600 mb-4">The blog post you're looking for doesn't exist.</p>
-          <p className="text-sm text-gray-500 mb-8">Slug: {params.slug}</p>
+          <p className="text-sm text-gray-500 mb-4">Slug: {params.slug}</p>
+          {allPosts.length > 0 && (
+            <div className="bg-gray-100 p-4 rounded-lg mb-8 text-left">
+              <p className="text-xs font-mono text-gray-700">
+                Available posts: {allPosts.map(p => p.slug).join(', ')}
+              </p>
+            </div>
+          )}
           <Link 
             href="/news"
             className="inline-flex items-center gap-2 text-[#006837] font-semibold hover:underline"
