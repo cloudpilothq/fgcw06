@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
-import { getMemberProfile } from '@/lib/queries';
+import { getUserProfile } from '@/lib/queries';
 import ProfileForm from '@/components/ProfileForm';
 
 export default async function ProfilePage() {
@@ -16,7 +16,8 @@ export default async function ProfilePage() {
   let userData = null;
 
   try {
-     const data = await getMemberProfile(userId as string);
+     const token = (session as any).accessToken;
+     const data = await getUserProfile(userId as string, token);
      userData = data?.user;
   } catch (error) {
      console.error("Failed to fetch profile", error);
