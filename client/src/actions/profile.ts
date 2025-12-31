@@ -21,12 +21,20 @@ export async function updateProfile(prevState: any, formData: FormData) {
   const linkedin = formData.get('linkedin_url') as string;
 
   try {
-    // Note: Our current updateMemberProfile query only accepts jobTitle and location.
-    // We are mapping 'profession' to 'description' (jobTitle) for now.
+    // Note: Our current updateUserProfile query only accepts certain fields.
+    // We are mapping 'profession' to 'description' for now.
     // You will need to expand the GraphQL mutation in queries.ts to accept more fields 
     // (bio, phone, linkedin) as you add them to your WP schema.
     
-    await updateUserProfile(userId as string, profession, "Unknown Location", token);
+    const profileData = {
+      id: userId,
+      description: profession,
+      // Add other fields here as your WordPress schema supports them
+      // firstName: fullName?.split(' ')[0],
+      // lastName: fullName?.split(' ').slice(1).join(' '),
+    };
+    
+    await updateUserProfile(profileData, token);
     
     revalidatePath('/profile');
     return { message: "Profile updated successfully!", success: true };
