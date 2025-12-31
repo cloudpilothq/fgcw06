@@ -26,14 +26,14 @@ export default function ChairmanMessagePage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
           {/* Chairman Photo */}
-          <div className="relative h-96">
+          <div className="relative h-[500px] bg-gradient-to-br from-green-900 to-green-700">
             <img 
               src="/chairman.png" 
               alt="Chairman - Mr. Austin Ogbe" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            <div className="absolute bottom-8 left-8 text-white">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            <div className="absolute bottom-8 left-8 text-white z-10">
               <h2 className="text-3xl font-serif font-bold mb-2 text-white">Mr. Austin Ogbe</h2>
               <p className="text-lg">Chairman, FGCW Class of 2006</p>
               <p className="text-sm text-gray-200">National House (Nato)</p>
