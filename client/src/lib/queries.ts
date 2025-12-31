@@ -213,10 +213,26 @@ export const REGISTER_USER = `
       }
     }
   }
-`;
-
 export async function registerUser(userData: any) {
-  return getWordPressData(REGISTER_USER);
+  const query = `
+    mutation RegisterUser {
+      registerUser(input: {
+        username: "${userData.username}",
+        email: "${userData.email}",
+        password: "${userData.password}",
+        firstName: "${userData.firstName || ''}",
+        lastName: "${userData.lastName || ''}"
+      }) {
+        user {
+          id
+          email
+          firstName
+          lastName
+        }
+      }
+    }
+  `;
+  return getWordPressData(query);
 }
 
 export const UPDATE_USER_PROFILE = `

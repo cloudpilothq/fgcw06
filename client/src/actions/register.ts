@@ -26,7 +26,7 @@ export async function register(prevState: RegisterState, formData: FormData) {
   const username = email.split('@')[0]; 
 
   try {
-    const response = await registerUser(email, username, password);
+    const response = await registerUser({ email, username, password, firstName, lastName });
     
     // Note: To set First/Last name we might need a second mutation or a custom plugin
     // as standard registerUser only takes basic args.
