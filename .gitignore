@@ -8,6 +8,7 @@ node_modules/
 # Environment variables (Crucial for your WordPress URL)
 .env
 .env.local
+.next
 
 # Cache
 .turbo/

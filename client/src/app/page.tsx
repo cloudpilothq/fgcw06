@@ -164,19 +164,14 @@ function WelcomeMessage() {
 
                 <p>On behalf of the Exco and the entire 2006 alumni community, I warmly welcome you to our digital home. This platform was created to reconnect old friends, strengthen our bonds, and provide a space where we can collectively give back to the institution that helped shape our lives.</p>
 
-                <p>Our alumni association is built on the values of unity, service, excellence, and lifelong friendship. Through this platform, members can stay informed about our activities, upcoming events, development projects, and opportunities to contribute to the growth of our alma mater and the wellbeing of fellow alumni.</p>
+                <p>Our alumni association is built on the values of unity, service, excellence, and lifelong friendship...</p>
 
-                <p>Federal Government College has produced leaders, professionals, and great personalities across various fields, and we remain proud of our shared heritage. Together, we can continue to uphold the legacy of our great school while inspiring future generations.</p>
-
-                <p>I encourage you to explore the site, reconnect with classmates, participate actively in our programs, and support our collective vision. Your involvement, no matter how small, makes a difference.</p>
-
-                <p>Once again, welcome, and thank you for being part of this great alumni family.</p>
-
-                <p>Together, we build. Together, we give back.</p>
-
-                <p>Regards,<br/>
-                Austin J. Ogbe,<br/>
-                Chairman, FGC Class of 2006</p>
+                <Link 
+                  href="/chairman-message"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-[#006837] text-white font-bold uppercase tracking-widest text-sm hover:bg-green-800 transition-all shadow-lg shadow-green-900/10 rounded-xl mt-4"
+                >
+                  Continue Reading →
+                </Link>
               </div>
             </div>
           </div>

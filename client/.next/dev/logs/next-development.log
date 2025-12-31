@@ -1,18 +1,7 @@
-[00:00:06.280] Server  LOG     ✓ Ready in 4.7s
-[00:00:15.860] Server  LOG     ○ Compiling / ...
-[00:00:20.962] Server  ERROR   WP Fetch Error: TypeError: Cannot read properties of undefined (reading 'toString')
-[00:00:28.615] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:47.135] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:34.651] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:30.631] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:12.943] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:53.213] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:06:05.960] Server  ERROR   WP Fetch Error: TypeError: Cannot read properties of undefined (reading 'toString')
-[00:09:56.247] Server  ERROR   WP Fetch Error: TypeError: Cannot read properties of undefined (reading 'toString')
-[00:09:58.716] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:11:08.296] Server  LOG     ✓ Compiled in 382ms
-[00:11:28.145] Server  LOG     ✓ Compiled in 457ms
-[00:11:37.038] Server  ERROR   WP Fetch Error: TypeError: Cannot read properties of undefined (reading 'toString')
-[00:13:41.608] Server  LOG     ✓ Compiled in 370ms
-[00:13:42.414] Server  ERROR   WP Fetch Error: TypeError: Cannot read properties of undefined (reading 'toString')
-[00:13:43.661] Browser ERROR   uncaughtError: Error: br is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`.
+[00:00:05.506] Server  LOG     ✓ Ready in 4.2s
+[00:00:08.522] Server  ERROR   WordPress API URL is not configured. Please set NEXT_PUBLIC_WORDPRESS_API_URL in your environment variables.
+[00:00:11.898] Server  ERROR   WordPress API URL is not configured. Please set NEXT_PUBLIC_WORDPRESS_API_URL in your environment variables.
+[00:00:26.282] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:28.754] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:36.679] Server  LOG       Reload env: .env.local
+[00:01:38.676] Server  LOG     ✓ Compiled in 1700ms
