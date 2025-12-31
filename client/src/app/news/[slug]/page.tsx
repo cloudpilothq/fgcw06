@@ -7,20 +7,31 @@ export const dynamic = 'force-dynamic';
 async function getPost(slug: string) {
   try {
     // Use WordPress REST API instead of GraphQL
-    const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL?.replace('/graphql', '') || '';
+    const wpGraphQLUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || '';
+    const wpUrl = wpGraphQLUrl.replace('/graphql', '');
     const restUrl = `${wpUrl}/wp-json/wp/v2/posts?slug=${slug}&_embed`;
+    
+    console.log('WordPress GraphQL URL:', wpGraphQLUrl);
+    console.log('WordPress Base URL:', wpUrl);
+    console.log('REST API URL:', restUrl);
+    console.log('Looking for slug:', slug);
     
     const res = await fetch(restUrl, { 
       next: { revalidate: 60 },
       cache: 'no-store' 
     });
     
+    console.log('Response status:', res.status);
+    console.log('Response OK:', res.ok);
+    
     if (!res.ok) {
-      console.error('REST API error:', res.status);
+      const errorText = await res.text();
+      console.error('REST API error:', res.status, errorText);
       return null;
     }
     
     const posts = await res.json();
+    console.log('Posts received:', posts.length);
     
     if (!posts || posts.length === 0) {
       console.error('No post found for slug:', slug);
@@ -28,6 +39,7 @@ async function getPost(slug: string) {
     }
     
     const post = posts[0];
+    console.log('Post found:', post.title?.rendered);
     
     // Transform REST API response to match our expected format
     return {
