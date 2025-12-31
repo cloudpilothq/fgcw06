@@ -174,8 +174,8 @@ function WelcomeMessage() {
 
                 <p>Together, we build. Together, we give back.</p>
 
-                <p>Regards,
-                Austin J. Ogbe,
+                <p>Regards,<br/>
+                Austin J. Ogbe,<br/>
                 Chairman, FGC Class of 2006</p>
               </div>
             </div>
