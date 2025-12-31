@@ -116,10 +116,10 @@ export default function ExcosPage() {
                 <h3 className="text-xl font-serif font-bold text-gray-900 mb-2">
                   {exco.name}
                 </h3>
-                <p className="text-sm font-semibold text-[#006837] uppercase tracking-wider mb-4">
+                <p className="text-sm font-semibold text-[#000000] tracking-wider mb-4">
                   {exco.position}
                 </p>
-                <p className="text-sm font-semibold text-[#006837] uppercase tracking-wider mb-4">
+                <p className="text-sm font-semibold text-[#000000] tracking-wider mb-4">
                   {exco.house}
                 </p>
 
