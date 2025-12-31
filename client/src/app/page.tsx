@@ -66,7 +66,7 @@ export default async function HomePage() {
           <div className="flex flex-col group hover:scale-105 transition-transform duration-300">
             <div className="aspect-[4/3] relative overflow-hidden mb-6">
               <img 
-                src="/events-reunion.jpg" 
+                src="/events-reunion.png" 
                 alt="Alumni at reunion" 
                 className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
               />
