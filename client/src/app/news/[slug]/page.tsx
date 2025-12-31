@@ -52,9 +52,11 @@ async function getBlogPost(slug: string) {
 export default async function BlogPostPage({ 
   params 
 }: { 
-  params: { slug: string } 
+  params: Promise<{ slug: string }> 
 }) {
-  const { post, allSlugs } = await getBlogPost(params.slug);
+  // In Next.js 15, params is a Promise that needs to be awaited
+  const { slug } = await params;
+  const { post, allSlugs } = await getBlogPost(slug);
 
   // If no post found, show error
   if (!post) {
@@ -62,7 +64,7 @@ export default async function BlogPostPage({
       <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
         <div className="text-center max-w-2xl">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Post Not Found</h1>
-          <p className="text-gray-600 mb-2">Looking for: <code className="bg-gray-200 px-2 py-1 rounded">{params.slug}</code></p>
+          <p className="text-gray-600 mb-2">Looking for: <code className="bg-gray-200 px-2 py-1 rounded">{slug}</code></p>
           {allSlugs.length > 0 && (
             <details className="mt-4 text-left bg-gray-100 p-4 rounded">
               <summary className="cursor-pointer font-semibold">Available posts ({allSlugs.length})</summary>
