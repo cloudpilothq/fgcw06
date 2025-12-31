@@ -59,11 +59,11 @@ export default async function HomePage() {
       </div>
 
       {/* Grid Features */}
-       <section className="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+       <section className="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8 animate-in fade-in duration-700">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           
           {/* Card 1: Events */}
-          <div className="flex flex-col">
+          <div className="flex flex-col group hover:scale-105 transition-transform duration-300">
             <div className="aspect-[4/3] relative overflow-hidden mb-6">
               <img 
                 src="/events-reunion.jpg" 
@@ -82,7 +82,7 @@ export default async function HomePage() {
           </div>
 
           {/* Card 2: Network */}
-          <div className="flex flex-col">
+          <div className="flex flex-col group hover:scale-105 transition-transform duration-300">
             <div className="aspect-[4/3] relative overflow-hidden mb-6">
               <img 
                 src="/network-group.jpg" 
@@ -101,7 +101,7 @@ export default async function HomePage() {
           </div>
 
           {/* Card 3: Resources */}
-          <div className="flex flex-col">
+          <div className="flex flex-col group hover:scale-105 transition-transform duration-300">
             <div className="aspect-[4/3] relative overflow-hidden mb-6">
               <img 
                 src="/career-dev.jpg" 
@@ -136,9 +136,9 @@ export default async function HomePage() {
 
 function WelcomeMessage() {
   return (
-    <section className="bg-gray-100 py-20">
+    <section className="bg-gray-100 py-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
           <div className="grid md:grid-cols-2 gap-0">
             {/* Chairman's Photo */}
             <div className="relative h-96 md:h-auto">
@@ -180,7 +180,7 @@ function WelcomeMessage() {
 
 function InvestorSection() {
   return (
-    <section className="max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
+    <section className="max-w-7xl mx-auto px-4 py-24 sm:px-6 lg:px-8 animate-in fade-in slide-in-from-left-4 duration-700">
       <div className="flex flex-col lg:flex-row items-center gap-16">
         
         {/* Text Content */}
@@ -224,7 +224,7 @@ function InvestorSection() {
 
 function NetworkingSection() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-24 animate-in fade-in duration-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
           
@@ -271,7 +271,7 @@ function NetworkingSection() {
 
 function ImpactSection() {
   return (
-    <section className="relative w-full h-[600px] overflow-hidden">
+    <section className="relative w-full h-[600px] overflow-hidden animate-in fade-in duration-1000">
       {/* Background Image: Ideally a wide shot of FGC Warri or a major landmark */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat grayscale-[30%]"
@@ -328,7 +328,7 @@ function AlumniEvents() {
   ];
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-20 bg-white">
+    <section className="max-w-6xl mx-auto px-4 py-20 bg-white animate-in fade-in duration-700">
       <h2 className="text-4xl font-serif text-gray-900 text-center mb-16">Upcoming Alumni Events</h2>
       
       <div className="space-y-6">
