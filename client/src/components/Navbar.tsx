@@ -13,6 +13,7 @@ export default function Navbar() {
       <div className="bg-[#006837] text-white py-2 text-xs hidden sm:block">
         <div className="max-w-7xl mx-auto px-4 flex justify-end gap-6 font-medium">
           <Link href="/about" className="hover:underline opacity-90 hover:opacity-100">About Us</Link>
+          <Link href="/career" className="hover:underline opacity-90 hover:opacity-100">Career</Link>
           <Link href="/contact" className="hover:underline opacity-90 hover:opacity-100">Contact Us</Link>
           <Link href="/directory" className="hover:underline opacity-90 hover:opacity-100">Directory</Link>
           <Link href="/login" className="hover:underline font-bold opacity-90 hover:opacity-100">Member Login</Link>
@@ -32,8 +33,8 @@ export default function Navbar() {
           <Link href="/network" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Network</Link>
           <Link href="/events" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Events</Link>
           <Link href="/news" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">News</Link>
+          <Link href="/excos" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Excos</Link>
           <Link href="/volunteer" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Volunteer</Link>
-          <Link href="/career" className="hover:text-[#006837] hover:underline decoration-2 underline-offset-4 transition-all">Career</Link>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -51,6 +52,7 @@ export default function Navbar() {
            {/* Mobile Utility Links (Visible because top bar is hidden on mobile) */}
           <div className="flex flex-col gap-3 pb-4 border-b border-gray-100 text-sm md:hidden">
              <Link href="/about" onClick={() => setIsOpen(false)} className="text-gray-600">About Us</Link>
+             <Link href="/career" onClick={() => setIsOpen(false)} className="text-gray-600">Career</Link>
              <Link href="/login" onClick={() => setIsOpen(false)} className="font-bold text-[#006837]">Member Login</Link>
              <Link href="/directory" onClick={() => setIsOpen(false)} className="text-gray-600">Directory</Link>
              <Link href="/contact" onClick={() => setIsOpen(false)} className="text-gray-600">Contact Us</Link>
@@ -61,8 +63,8 @@ export default function Navbar() {
             <Link href="/network" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Network</Link>
             <Link href="/events" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Events</Link>
             <Link href="/news" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">News</Link>
+            <Link href="/excos" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Excos</Link>
             <Link href="/volunteer" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Volunteer</Link>
-            <Link href="/career" onClick={() => setIsOpen(false)} className="hover:text-[#006837] py-2">Career</Link>
           </nav>
         </div>
       )}
