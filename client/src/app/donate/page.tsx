@@ -52,7 +52,7 @@ export default function DonatePage() {
       {/* Header */}
       <div className="bg-[#006837] text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-serif font-bold mb-6">Invest in Excellence</h1>
+          <h1 className="text-5xl font-serif font-bold mb-6 text-white">Invest in Excellence</h1>
           <p className="text-xl text-green-50 font-light">
             Your contributions provide scholarships, infrastructure support, and 
             professional development for the FGCW community.
