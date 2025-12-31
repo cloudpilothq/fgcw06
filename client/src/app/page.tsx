@@ -144,7 +144,7 @@ function WelcomeMessage() {
             <div className="relative h-96 md:h-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 z-10" />
               <img 
-                src="/chairman-photo.jpg" 
+                src="/chairman.png" 
                 alt="Chairman - Mr. Austin Ogbe" 
                 className="w-full h-full object-cover"
               />
@@ -160,15 +160,23 @@ function WelcomeMessage() {
               </p>
 
               <div className="space-y-4 text-gray-700 leading-relaxed">
-                <p>
-                  FGCW 06' Association incorporated in ****, represents a unique and vibrant group of individuals united by shared experiences and lasting memories. FGCW 06' Association embodies the values of unity, diversity, and excellence instilled during their formative years at FGC Warri.
-                </p>
-                <p>
-                  Since graduating in 2006, the FGCW 06' Association alumni have maintained strong bonds through active engagement and collaboration. The group is committed to fostering a supportive community where members can connect, grow, and contribute to the collective good.
-                </p>
-                <p>
-                  Driven by the principles of inclusion and mutual respect, FGCW Class of 2006 Association has initiated various projects, including supporting our alma-mater and giving back to society through charitable initiatives. Together, we remain a testament to the enduring legacy of FGC Warri as a hub for national unity and leadership development.
-                </p>
+                <p>Welcome to the official website of the Federal Government College Warri Alumni Class of 2006.</p>
+
+                <p>On behalf of the Exco and the entire 2006 alumni community, I warmly welcome you to our digital home. This platform was created to reconnect old friends, strengthen our bonds, and provide a space where we can collectively give back to the institution that helped shape our lives.</p>
+
+                <p>Our alumni association is built on the values of unity, service, excellence, and lifelong friendship. Through this platform, members can stay informed about our activities, upcoming events, development projects, and opportunities to contribute to the growth of our alma mater and the wellbeing of fellow alumni.</p>
+
+                <p>Federal Government College has produced leaders, professionals, and great personalities across various fields, and we remain proud of our shared heritage. Together, we can continue to uphold the legacy of our great school while inspiring future generations.</p>
+
+                <p>I encourage you to explore the site, reconnect with classmates, participate actively in our programs, and support our collective vision. Your involvement, no matter how small, makes a difference.</p>
+
+                <p>Once again, welcome, and thank you for being part of this great alumni family.</p>
+
+                <p>Together, we build. Together, we give back.</p>
+
+                <p>Regards,
+                <br>Austin J. Ogbe,</br>
+                <br>Chairman, FGC Class of 2006</br></p>
               </div>
             </div>
           </div>

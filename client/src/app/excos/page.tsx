@@ -6,43 +6,67 @@ export default function ExcosPage() {
     {
       name: "Mr. Austin Ogbe",
       position: "Chairman",
-      photo: "/excos/chairman.jpg",
+      house: "National House (Nato)",
+      photo: "/excos/chairman.png",
       email: "chairman@fgcw06.org",
+      facebook: "#",
+      twitter: "#",
+      instagram: "#",
       linkedin: "#"
     },
     {
-      name: "Mrs. Sarah Johnson",
-      position: "Vice President",
-      photo: "/excos/vp.jpg",
-      email: "vp@fgcw06.org",
+      name: "Kesiena David Ruadjere",
+      position: "Vice Chairman",
+      house: "School House",
+      photo: "/excos/vc.jpg",
+      email: "vicechairman@fgcw06.org",
+      facebook: "#",
+      twitter: "#",
+      instagram: "#",
       linkedin: "#"
     },
     {
-      name: "Mr. David Okonkwo",
-      position: "General Secretary",
+      name: "Douye Victoria Fufeyin",
+      position: "Secretary",
+      house: "Independent House (Pendo)",
       photo: "/excos/secretary.jpg",
       email: "secretary@fgcw06.org",
+      facebook: "#",
+      twitter: "#",
+      instagram: "#",
       linkedin: "#"
     },
     {
-      name: "Mrs. Grace Adeyemi",
+      name: "Victory Oshorema Oshomegie",
       position: "Treasurer",
+      house: "National House (Nato)",
       photo: "/excos/treasurer.jpg",
       email: "treasurer@fgcw06.org",
+      facebook: "#",
+      twitter: "#",
+      instagram: "#",
       linkedin: "#"
     },
     {
-      name: "Mr. James Eze",
-      position: "Financial Secretary",
-      photo: "/excos/financial-secretary.jpg",
-      email: "finance@fgcw06.org",
+      name: "Yomi Thompson",
+      position: "Welfare Officer",
+      house: "National House (Nato)",
+      photo: "/excos/welfare.jpg",
+      email: "welfareofficer@fgcw06.org",
+      facebook: "#",
+      twitter: "#",
+      instagram: "#",
       linkedin: "#"
     },
     {
-      name: "Mrs. Blessing Okoro",
-      position: "Public Relations Officer",
+      name: "Lilo-Siakpere Oghenetega",
+      position: "PRO",
+      house: "Unity House (Nato)",
       photo: "/excos/pro.jpg",
       email: "pro@fgcw06.org",
+      facebook: "#",
+      twitter: "#",
+      instagram: "#",
       linkedin: "#"
     },
     {
@@ -56,13 +80,6 @@ export default function ExcosPage() {
       instagram: "#",
       linkedin: "#"
     },
-    {
-      name: "Mr. Emmanuel Nwosu",
-      position: "Welfare Officer",
-      photo: "/excos/welfare.jpg",
-      email: "welfare@fgcw06.org",
-      linkedin: "#"
-    }
   ];
 
   return (
