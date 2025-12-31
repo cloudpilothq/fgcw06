@@ -1,21 +1,39 @@
 // lib/queries.ts
 
 export async function getWordPressData(query: string, authToken?: string) {
+  const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+  
+  // Check if WordPress API URL is configured
+  if (!apiUrl) {
+    console.error('WordPress API URL is not configured. Please set NEXT_PUBLIC_WORDPRESS_API_URL in your environment variables.');
+    return null;
+  }
+
   const headers: any = { 'Content-Type': 'application/json' };
   
   if (authToken) {
     headers['Authorization'] = `Bearer ${authToken}`;
   }
 
-  const res = await fetch(process.env.NEXT_PUBLIC_WORDPRESS_API_URL as string, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({ query }),
-    next: { revalidate: 60 }
-  });
+  try {
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ query }),
+      next: { revalidate: 60 }
+    });
 
-  const json = await res.json();
-  return json.data;
+    if (!res.ok) {
+      console.error(`WordPress API error: ${res.status} ${res.statusText}`);
+      return null;
+    }
+
+    const json = await res.json();
+    return json.data;
+  } catch (error) {
+    console.error('WP Fetch Error:', error);
+    return null;
+  }
 }
 
 export const GET_EVENTS = `
