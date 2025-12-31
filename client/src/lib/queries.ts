@@ -327,4 +327,52 @@ export const GET_GALLERY_ALBUMS = `
       }
     }
   }
+`;// Login mutation
+export const LOGIN_USER = `
+  mutation LoginUser($username: String!, $password: String!) {
+    login(input: {username: $username, password: $password}) {
+      authToken
+      user {
+        id
+        name
+        email
+      }
+    }
+  }
 `;
+
+export async function loginUser(username: string, password: string) {
+  const query = LOGIN_USER.replace('$username', `"${username}"`).replace('$password', `"${password}"`);
+  return getWordPressData(query);
+}
+
+// Contact form submission
+export const SUBMIT_CONTACT_FORM = `
+  mutation SubmitContactForm($name: String!, $email: String!, $subject: String, $message: String!) {
+    submitGfForm(input: {
+      formId: 1
+      fieldValues: [
+        {id: 1, value: $name}
+        {id: 2, value: $email}
+        {id: 3, value: $subject}
+        {id: 4, value: $message}
+      ]
+    }) {
+      confirmation {
+        message
+      }
+      errors {
+        message
+      }
+    }
+  }
+`;
+
+export async function submitContactForm(name: string, email: string, subject: string, message: string) {
+  const query = SUBMIT_CONTACT_FORM
+    .replace('$name', `"${name}"`)
+    .replace('$email', `"${email}"`)
+    .replace('$subject', `"${subject}"`)
+    .replace('$message', `"${message}"`);
+  return getWordPressData(query);
+}
