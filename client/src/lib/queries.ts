@@ -114,7 +114,6 @@ export const GET_BUSINESS_DIRECTORY = `
             sourceUrl
             altText
           }
-        }
       }
     }
   }
@@ -123,6 +122,27 @@ export const GET_BUSINESS_DIRECTORY = `
 export async function getBusinessDirectory() {
   return getWordPressData(GET_BUSINESS_DIRECTORY);
 }
+
+// Alias for GET_BUSINESS_DIRECTORY to match imports in business-directory/page.tsx
+export const GET_BUSINESSES = GET_BUSINESS_DIRECTORY;
+
+// Query for alumni directory
+export const GET_ALUMNI = `
+  query GetAlumni {
+    users(first: 100) {
+      nodes {
+        id
+        name
+        email
+        description
+        avatar {
+          url
+        }
+      }
+    }
+  }
+`;
+
 
 export const GET_JOBS = `
   query GetJobs {
