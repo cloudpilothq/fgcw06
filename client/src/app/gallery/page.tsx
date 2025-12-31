@@ -53,6 +53,10 @@ const galleryPhotos = {
     'Photo from General Uchezz(80).jpg', 'Photo from General Uchezz(81).jpg', 'Photo from General Uchezz(82).jpg',
     'Photo from General Uchezz(83).jpg', 'Photo from General Uchezz(84).jpg', 'Photo from General Uchezz(85).jpg',
   ],
+  community: [
+    'visit1.jpg', 'visit2.jpg', 'visit3.jpg', 'visit4.jpg', 'visit5.jpg',
+    'visit6.jpg', 'visit7.jpg', 'visit8.jpg', 'visit9.jpg', 'visit10.jpg',
+  ],
 };
 
 // Build gallery data with all photos
