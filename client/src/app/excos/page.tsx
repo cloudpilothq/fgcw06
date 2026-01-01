@@ -74,11 +74,11 @@ export default function ExcosPage() {
       position: "PRO 2",
       house: "Independent House (Pendo)",
       photo: "/excos/pro2.jpg",
-      email: "pro2@fgcw06.org",
-      facebook: "#",
-      twitter: "#",
-      instagram: "#",
-      linkedin: "#"
+      email: "efehiigbineweka@gmail.com",
+      facebook: "https://www.facebook.com/efehi.igbinewekaosamagbe",
+      twitter: "",
+      instagram: "https://www.instagram.com/efehishantel22",
+      linkedin: ""
     },
   ];
 
