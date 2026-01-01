@@ -61,7 +61,7 @@ export default function ExcosPage() {
     {
       name: "Lilo-Siakpere Oghenetega",
       position: "PRO",
-      house: "Unity House (Nato)",
+      house: "Unity House",
       photo: "/excos/pro.jpg",
       email: "pro@fgcw06.org",
       facebook: "#",
