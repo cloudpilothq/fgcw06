@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
-import GallerySection from '@/components/GallerySection';
+import NewsSection from '@/components/NewsSection';
 // import YouTubeSection from '@/components/YouTubeSection';
 import { MapPin, Monitor } from 'lucide-react';
 
@@ -114,7 +114,7 @@ export default async function HomePage() {
       <ImpactSection />
       <AlumniEvents />
       {/* <YouTubeSection /> */}
-      <GallerySection />
+      <NewsSection />
     </main>
   );
 }
