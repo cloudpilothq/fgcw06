@@ -11,8 +11,9 @@ export async function getWordPressData(query: string, variables: any = {}) {
       });
       const json = await res.json();
       if (json.errors) {
+          const errorMessage = json.errors[0]?.message || 'Unknown WordPress API Error';
           console.error('WordPress Errors:', json.errors);
-          return null;
+          throw new Error(errorMessage);
       }
       return json.data;
   } catch (err) {
