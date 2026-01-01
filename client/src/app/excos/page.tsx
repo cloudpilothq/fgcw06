@@ -4,15 +4,15 @@ import { ArrowLeft, Mail, Linkedin, Facebook, Twitter, Instagram } from 'lucide-
 export default function ExcosPage() {
   const excos = [
     {
-      name: "Mr. Austin Ogbe",
+      name: "Austin Ogbe",
       position: "Chairman",
       house: "National House (Nato)",
       photo: "/excos/chairman.png",
-      email: "chairman@fgcw06.org",
-      facebook: "#",
-      twitter: "#",
-      instagram: "#",
-      linkedin: "#"
+      email: "jopazzy@gmail.com",
+      facebook: "https://www.facebook.com/austin.uniquejoe",
+      twitter: "https://x.com/joe_pazzy",
+      instagram: "https://www.instagram.com/austin_ogbe",
+      linkedin: "https://www.linkedin.com/in/austin-ogbe-3518b553"
     },
     {
       name: "Kesiena David Ruadjere",
