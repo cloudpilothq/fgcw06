@@ -25,28 +25,21 @@ export default function Footer() {
           <div className="flex flex-col">
             <h2 className="sr-only">Footer menu</h2>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/location" className="hover:underline">Directions & Parking</Link></li>
-              <li><Link href="/contact" className="hover:underline">Contact FGCW 06</Link></li>
-              <li><Link href="/directory" className="hover:underline">Faculty Directory</Link></li>
-              <li><Link href="/media" className="hover:underline">Media Inquiries</Link></li>
-              <li>
-                <a href="https://system.umn.edu/" target="_blank" rel="noopener" className="hover:underline inline-flex items-center gap-1">
-                  University System 
-                  <svg className="w-3 h-3" fill="none" viewBox="0 0 20 20" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11L16 16.5L2.5 16.5L2.5 3.5L8 3.5 M9 9.5L17.5 1.5 M11.5 1.5L17.5 1.5L17.5 7.5"></path>
-                  </svg>
-                </a>
-              </li>
+              <li><Link href="/about" className="hover:underline">About Us</Link></li>
+              <li><Link href="/contact" className="hover:underline">Contact Us</Link></li>
+              <li><Link href="/directory" className="hover:underline">Member Directory</Link></li>
+              <li><Link href="/events" className="hover:underline">Events</Link></li>
+              <li><Link href="/career" className="hover:underline">Career</Link></li>
             </ul>
           </div>
 
           {/* Column 3: Secondary Links (footer__links) */}
           <div className="flex flex-col">
             <ul className="space-y-2 text-sm">
-              <li><Link href="/students" className="hover:underline">Current Members</Link></li>
-              <li><Link href="/undergrad" className="hover:underline">Mentorship Program</Link></li>
-              <li><Link href="/staff" className="hover:underline">Exco & Staff</Link></li>
-              <li><Link href="/recruiters" className="hover:underline">Recruiters & Corporations</Link></li>
+              <li><Link href="/network" className="hover:underline">Current Members</Link></li>
+              <li><Link href="/career" className="hover:underline">Mentorship Program</Link></li>
+              <li><Link href="/excos" className="hover:underline">Excos</Link></li>
+              <li><Link href="/volunteer" className="hover:underline">Volunteer</Link></li>
             </ul>
           </div>
 
