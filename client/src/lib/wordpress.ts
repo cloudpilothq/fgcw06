@@ -42,3 +42,41 @@ export const GET_MEMBERS = `
     }
   }
 `;
+
+// Mutation to Log In and get JWT
+export const LOGIN_USER = `
+  mutation LoginUser($username: String!, $password: String!) {
+    login(input: {username: $username, password: $password}) {
+      authToken
+      user {
+        id
+        name
+        email
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+
+// Mutation to Register a new User
+export const REGISTER_USER = `
+  mutation RegisterUser($email: String!, $username: String!, $password: String!, $firstName: String, $lastName: String) {
+    registerUser(input: {username: $username, email: $email, password: $password, firstName: $firstName, lastName: $lastName}) {
+      user {
+        id
+        name
+        email
+      }
+    }
+  }
+`;
+
+// Mutation to Send Password Reset Email
+export const SEND_PASSWORD_RESET = `
+  mutation SendPasswordReset($username: String!) {
+    sendPasswordResetEmail(input: {username: $username}) {
+      success
+    }
+  }
+`;

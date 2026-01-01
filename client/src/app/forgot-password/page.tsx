@@ -2,8 +2,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Send } from 'lucide-react';
+import { useFormState } from 'react-dom';
+import { sendPasswordResetLink } from '@/actions/forgot-password';
 
 export default function ForgotPasswordPage() {
+  const [state, dispatch, isPending] = useFormState(sendPasswordResetLink, undefined);
   return (
     <div className="min-h-screen bg-[#121212] flex items-center justify-center p-4 font-sans">
       <div className="w-full max-w-5xl bg-[#1E1E1E] rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[600px] border border-gray-800">
@@ -45,21 +48,27 @@ export default function ForgotPasswordPage() {
                   Enter your registered email address and we will send you a secure link to reset your password.
                 </p>
 
-                <form className="space-y-6">
+                <form action={dispatch} className="space-y-6">
                     
                     <div>
                         <input 
                             name="email" 
                             type="email" 
                             placeholder="Registered Email Address"
+                            required
                             className="w-full bg-[#2A2A2A] border border-gray-700 text-white text-sm rounded-lg focus:ring-2 focus:ring-[#006837] focus:border-transparent block p-4 outline-none transition-all placeholder-gray-500"
                         />
                     </div>
 
-                    <button type="submit" className="w-full text-white bg-[#006837] hover:bg-[#00522b] focus:ring-4 focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-4 text-center transition-all shadow-[0_4px_14px_0_rgba(0,104,55,0.39)] bg-gradient-to-r from-[#006837] to-[#004d29] flex items-center justify-center gap-2">
-                        Send Recovery Link <Send size={16} />
+                    <button disabled={isPending} type="submit" className="w-full text-white bg-[#006837] hover:bg-[#00522b] focus:ring-4 focus:ring-green-900 font-medium rounded-lg text-sm px-5 py-4 text-center transition-all shadow-[0_4px_14px_0_rgba(0,104,55,0.39)] bg-gradient-to-r from-[#006837] to-[#004d29] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        {isPending ? 'Sending...' : 'Send Recovery Link'} <Send size={16} />
                     </button>
                     
+                    {state?.message && (
+                        <p className="text-sm text-center text-green-400 mt-4 bg-green-900/20 p-3 rounded-lg border border-green-900/50">
+                            {state.message}
+                        </p>
+                    )}
                 </form>
 
                 <div className="mt-8 text-center">
