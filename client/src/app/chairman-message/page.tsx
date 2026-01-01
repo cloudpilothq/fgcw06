@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Mail, Facebook, Linkedin, Instagram, Twitter } from 'lucide-react';
 
 export default function ChairmanMessagePage() {
   return (
@@ -42,8 +42,8 @@ export default function ChairmanMessagePage() {
 
           {/* Message Content */}
           <div className="p-8 md:p-12">
-            <div className="space-y-6 text-gray-700 leading-relaxed text-lg">
-              <p className="text-2xl font-serif font-bold text-gray-900 mb-6">
+            <div className="space-y-6 text-gray-700 leading-relaxed text-lg text-justify">
+              <p className="text-2xl font-serif font-bold text-gray-900 mb-6 text-left">
                 Dear Alumni,
               </p>
 
@@ -59,7 +59,7 @@ export default function ChairmanMessagePage() {
 
               <p>Once again, welcome, and thank you for being part of this great alumni family.</p>
 
-              <p className="text-xl font-semibold text-gray-900 mt-8">
+              <p className="text-xl font-semibold text-gray-900 mt-8 text-left">
                 Together, we build. Together, we give back.
               </p>
 
@@ -67,8 +67,29 @@ export default function ChairmanMessagePage() {
                 <p className="font-semibold text-gray-900">Regards,<br/>
                 Austin J. Ogbe,<br/>
                 Chairman, FGC Class of 2006</p>
+                
+                {/* Social Media Buttons */}
+                <div className="flex gap-4 mt-6">
+                  <a href="mailto:jopazzy@gmail.com" className="p-2 bg-gray-100 rounded-full text-[#006837] hover:bg-[#006837] hover:text-white transition-colors">
+                    <Mail size={20} />
+                  </a>
+                  <a href="https://www.facebook.com/austin.uniquejoe" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 rounded-full text-[#006837] hover:bg-[#006837] hover:text-white transition-colors">
+                    <Facebook size={20} />
+                  </a>
+                  <a href="https://www.linkedin.com/in/austin-ogbe-3518b553" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 rounded-full text-[#006837] hover:bg-[#006837] hover:text-white transition-colors">
+                    <Linkedin size={20} />
+                  </a>
+                  <a href="https://x.com/joe_pazzy" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 rounded-full text-[#006837] hover:bg-[#006837] hover:text-white transition-colors">
+                    <Twitter size={20} />
+                  </a>
+                  <a href="https://www.instagram.com/austin_ogbe" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 rounded-full text-[#006837] hover:bg-[#006837] hover:text-white transition-colors">
+                    <Instagram size={20} />
+                  </a>
+                </div>
               </div>
             </div>
+
+
 
             {/* Call to Action */}
             <div className="mt-12 pt-8 border-t border-gray-200">
